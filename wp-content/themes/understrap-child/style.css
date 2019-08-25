@@ -20,11 +20,15 @@
 }
   
 #breadcrumbs {
-    padding-top: .5rem;
-    padding-bottom: .5rem;
+    padding-top: .7rem;
+    padding-bottom: .7rem;
 }
 
 .site-info {
     text-align: center;
     font-size: 80%;
+}
+
+#main-menu {
+    text-transform: uppercase;
 }

@@ -12,3 +12,19 @@
  Tags: one-column, custom-menu, featured-images, theme-options, translation-ready
  GitHub Theme URI: holger1411/understrap-child
 */
+
+/* Added by Phu Tran */
+
+.breadcrumbs-wrapper {
+    background-color: #ededed; 
+}
+  
+#breadcrumbs {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.site-info {
+    text-align: center;
+    font-size: 80%;
+}

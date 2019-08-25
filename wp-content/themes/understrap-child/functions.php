@@ -25,6 +25,7 @@ function theme_enqueue_styles() {
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
     }
+    wp_enqueue_style( 'understrap-child-styles', get_stylesheet_directory_uri() . '/style.css', wp_get_theme()->get('Version') );
 }
 
 function add_child_theme_textdomain() {

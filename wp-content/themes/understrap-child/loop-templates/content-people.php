@@ -41,9 +41,10 @@ $positions = array(
 	<?php foreach ( $user_query->get_results() as $user ) : 
 	if ( ! $user->active ) continue ?>
 
-	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-				
+	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-4">	
 		<div class="card profile-card">
+			<div class="card-img-block">			
+			</div>	
 			<div class="card-body pt-5">
 				<a href="<?php echo '/author/' . $user->user_login ?>"><img src="<?php echo esc_url( get_avatar_url( $user->ID ) ); ?>" alt="profile-image" class="profile"/></a>
 				<h5 class="card-title text-center mt-4"><?= $user->display_name ?></h5>

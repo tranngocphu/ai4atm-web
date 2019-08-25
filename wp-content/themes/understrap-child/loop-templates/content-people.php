@@ -7,50 +7,59 @@
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
+
+$user_query = new WP_User_Query( array( 'role__in' => array('Administrator','Editor','Author')));
+
+$positions = array(
+	'dt' => 'Director',
+	'pi' => 'Principle Investigator',
+	'pd' => 'Program Director',
+	'pm' => 'Project Manager',
+	'tl' => 'Team Leader',
+	'rf' => 'Research Fellow',
+	'ra' => 'Research Associate',
+	'po' => 'Project Officer',
+	'vs' => 'Visiting Scholar',
+	'ps' => 'PhD Student',
+	'ms' => 'Master Student',
+	'fs' => 'FYP Student',
+	'al' => 'Alumni'
+);
+
 ?>
 
+<header class="entry-header">
 
-<?php /* 
+	<h1 class="text-center mb-5">Meet The Team</h1>
 
-This is html, but commented out by php commentor
+</header><!-- .entry-header -->
 
-<article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
+<div class="row">
 
-	<header class="entry-header">
+<?php if ( ! empty( $user_query->get_results() ) ) : ?>
 
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+	<?php foreach ( $user_query->get_results() as $user ) : 
+	if ( ! $user->active ) continue ?>
 
-	</header><!-- .entry-header -->
+	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+				
+		<div class="card profile-card">
+			<div class="card-body pt-5">
+				<a href="<?php echo '/author/' . $user->user_login ?>"><img src="<?php echo esc_url( get_avatar_url( $user->ID ) ); ?>" alt="profile-image" class="profile"/></a>
+				<h5 class="card-title text-center mt-4"><?= $user->display_name ?></h5>
+				<p class="staff-position text-center mt-4"><?= $positions[$user->position] ?></p>
+				<p class="card-text text-center"></p>
+			</div>
+		</div>
+	
+	</div>
 
-	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
+	<?php endforeach; ?>	
 
-	<div class="entry-content">
+<?php else : ?>
 
-		<?php the_content(); ?>
+	<div>No author found.</div>	
 
-		<?php
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'understrap' ),
-				'after'  => '</div>',
-			)
-		);
-		?>
+<?php endif; ?>
 
-	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-
-		<?php edit_post_link( __( 'Edit', 'understrap' ), '<span class="edit-link">', '</span>' ); ?>
-
-	</footer><!-- .entry-footer -->
-
-</article><!-- #post-## --> 
-
- */ ?>
-
- <div>
-
-		People content.
-
- </div>
+</div> <!-- row end -->

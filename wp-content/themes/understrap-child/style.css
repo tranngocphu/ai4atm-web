@@ -81,6 +81,7 @@
 .profile-card h5{
     font-weight:600;
     color:#7c008c;
+    max-height: 70px;
 }
 .profile-card .card-text{
     font-weight:300;
@@ -108,4 +109,10 @@
 .profile-card i:hover {
   background-color:#7c008c;
   color:#fff;
+}
+
+.profile-card .staff-position,
+.profile-card .card-title {
+    line-height: 1.15;
+    height: 2.5em;
 }

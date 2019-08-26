@@ -36,6 +36,12 @@
 }
 
 
+body, h1, h2, h3, h4, h5, a {
+    color : var(--gray);
+}
+
+
+
 /* PEOPE PAGE */
 
 .profile-card .card-img-block{
@@ -127,20 +133,20 @@
     border-style: solid none none none;
     border-width: thin;
     border-color: #cccccc;
-    padding-top: 5px;
-    margin-bottom: 15px;
+    padding-top: 10px;
+    margin-bottom: -5px;
 
-}
-
-.pub-title {
-    font-weight : bold;
-    color : blue;
 }
 
 .pub-publisher {
     font-style: italic;
 }
 
-.pub-year {
+.pub-year, .pub-title {
     font-weight : bold;
+    color : var(--gray-dark);
+}
+
+.pub-each-author > a {
+    text-decoration: underline;
 }

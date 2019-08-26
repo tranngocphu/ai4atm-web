@@ -36,9 +36,8 @@
 }
 
 
-/* People profile card */
+/* PEOPE PAGE */
 
-/*Profile card 4*/
 .profile-card .card-img-block{
     float:left;
     width:100%;
@@ -115,4 +114,33 @@
 .profile-card .card-title {
     line-height: 1.15;
     height: 2.5em;
+}
+
+
+/* PUBLICATIONS PAGE */
+
+.pub-wrapper {    
+    width : 100%;      
+}
+
+.pub-item {
+    border-style: solid none none none;
+    border-width: thin;
+    border-color: #cccccc;
+    padding-top: 5px;
+    margin-bottom: 15px;
+
+}
+
+.pub-title {
+    font-weight : bold;
+    color : blue;
+}
+
+.pub-publisher {
+    font-style: italic;
+}
+
+.pub-year {
+    font-weight : bold;
 }

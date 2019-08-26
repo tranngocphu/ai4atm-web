@@ -7,50 +7,90 @@
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
+
+$args = array (
+	'post_type' => array( 'publication' ),	
+	'nopaging'  => true,
+	'order'     => 'DESC',
+	'orderby'   => 'year',
+);
+
+$query_pub = new WP_Query( $args );
+
+$pubs = $query_pub->posts;
+
+wp_reset_postdata();
+
 ?>
 
+<header class="entry-header">
 
-<?php /* 
+	<h1 class="text-center">Publications</h1>
+	<div class="text-center mb-5"><< Only authors from our team are shown >></div>
 
-This is html, but commented out by php commentor
+</header><!-- .entry-header -->
 
-<article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
+<div class="pub-wrapper">
 
-	<header class="entry-header">
+	<?php foreach ( $pubs as $pub) : 
 
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		$author_ids = $pub->authors;
+		
+		$authors = [];
+		
+		foreach ( $author_ids as $id ) {
+		
+			$author_query = new WP_User_Query( array( 'include' => array( (int)$id ) ) );
+		
+			array_push( $authors, $author_query->get_results()[0] );			
+		}
+		
+		$count = sizeof($authors);
+		
+		$x = 0;
 
-	</header><!-- .entry-header -->
-
-	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-
-	<div class="entry-content">
-
-		<?php the_content(); ?>
-
-		<?php
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'understrap' ),
-				'after'  => '</div>',
-			)
-		);
+		foreach ($authors as $author) {				
+			
+			if ( $x < $count -1 ) {
+				$separator = " &#183; ";
+		
+			} else {
+				$separator = "";
+		
+			}
+		
+			$authors[] = (object)array(
+		
+				"name" => $author->display_name,
+				"link" => "/author/" . $author->user_login,
+				"separator" => $separator
+		
+			);
+		
+			$x += 1;
+		};		
+		
 		?>
 
-	</div><!-- .entry-content -->
+		<div class="row pub-item"> 
+			
+			<!-- Year : -->
+			<div class="col-xs-2 col-sm-3 col-md-2 col-lg-2 col-xl-1">
+				<div class="pub-year"><?= $pub->year ?></div>
+			</div>
+			
+			<!-- Title, Author, Publisher : -->
+			<div class="col-xs-5 col-sm-9 col-md-10 col-lg-10 col-xl-11">
+				<a href="<?= $pub->link ?>" target="_blank"><span class="pub-title"><?= $pub->article_title ?></span></a>
+				<div class="pub-author-list">
+					<?php foreach ( $authors as $author ) : ?>
+						<span class="each-author"><a href="<?= $author->link ?>"><?= $author->name ?></a><?= $author->separator ?></span>
+					<?php endforeach; ?>
+				</div>
+				<p class="pub-publisher"><?= $pub->publisher ?></p>
+			</div>
+		</div>
 
-	<footer class="entry-footer">
+	<?php endforeach; ?>
 
-		<?php edit_post_link( __( 'Edit', 'understrap' ), '<span class="edit-link">', '</span>' ); ?>
-
-	</footer><!-- .entry-footer -->
-
-</article><!-- #post-## --> 
-
- */ ?>
-
- <div>
-
-		Publications content.
-
- </div>
+</div> <!-- end pub_wrapper -->

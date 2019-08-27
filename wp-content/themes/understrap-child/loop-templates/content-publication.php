@@ -30,6 +30,8 @@ wp_reset_postdata();
 	<?php foreach ( $pubs as $pub) : 
 
 		$edit_link = get_edit_post_link( $pub->ID );
+		$access_mode = $pub->full_text;		
+		$pdf_link = wp_get_attachment_url( $pub->pdf_article );		
 
 		$author_ids = $pub->authors;		
 		$authors = [];
@@ -75,10 +77,20 @@ wp_reset_postdata();
 			<!-- Title, Author, Publisher : -->
 			<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 col-xl-11">
 				<a href="<?= $pub->link ?>" target="_blank"><span class="pub-title"><?= $pub->article_title ?></span></a>
+				
 				<div class="pub-author-list">
 					<?php foreach ( $authors_str as $author ) echo $author; ?>
 				</div>
+				
 				<div class="pub-publisher"><?= $pub->publisher ?></div>
+				
+				<?php if ( $pdf_link ) : ?>
+
+				<div class="pub-pdf-link">
+					<i class="fa fa-download pub-download-icon" aria-hidden="true"></i> <a class="pub-download-link" href="<?= $pdf_link ?>" target="_blank">Download PDF</a> <span class="pub-access-mode">(<?= $access_mode ?>)</span>
+				</div>
+
+				<?php endif; ?>
 				
 				<!-- Show edit link to logged in user -->
 				<?php if ( is_user_logged_in() ) : ?>

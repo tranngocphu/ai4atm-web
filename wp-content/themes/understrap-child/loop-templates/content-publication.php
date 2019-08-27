@@ -23,14 +23,17 @@ wp_reset_postdata();
 ?>
 
 <header class="entry-header">
-	<h1 class="text-center">Publications</h1>
-	<div class="text-center mb-5"><< Only authors from our team are shown >></div>
+	<h1 class="text-center mb-5">Publications</h1>
 </header><!-- .entry-header -->
 
 <div class="pub-wrapper">
 	<?php foreach ( $pubs as $pub) : 
+
+		$edit_link = get_edit_post_link( $pub->ID );
+
 		$author_ids = $pub->authors;		
-		$authors = [];	
+		$authors = [];
+		$authors_str = [];
 
 		foreach ( $author_ids as $id ) {		
 			$author_query = new WP_User_Query( array( 'include' => array( (int)$id ) ) );
@@ -41,17 +44,23 @@ wp_reset_postdata();
 		$x = 0;
 
 		foreach ($authors as $author) {
-			if ( $x < $count -1 ) {
-				$separator = " &#183; ";		
+			
+			
+			$separator = ( $x < $count -1 ) ? ' &#183; ' : '';		
+			
+			$name = $author->full_name;
+			$link = "/author/" . $author->user_login;
+
+			if ( $author->roles[0] === 'external_author' ) {
+				
+				$authors_str[] = '<span class="pub-each-author">' . $name . $separator . '</span>';
+			
 			} else {
-				$separator = "";		
+
+				$authors_str[] = '<span class="pub-each-author"><a href="' . $link .'">' . $name . '</a>' . $separator . '</span>';
+
 			}
 		
-			$authors[] = (object)array(		
-				"name" => $author->display_name,
-				"link" => "/author/" . $author->user_login,
-				"separator" => $separator		
-			);		
 			$x += 1;
 		};	
 		?>
@@ -67,11 +76,16 @@ wp_reset_postdata();
 			<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 col-xl-11">
 				<a href="<?= $pub->link ?>" target="_blank"><span class="pub-title"><?= $pub->article_title ?></span></a>
 				<div class="pub-author-list">
-					<?php foreach ( $authors as $author ) : ?>
-						<span class="pub-each-author"><a href="<?= $author->link ?>"><?= $author->name ?></a><?= $author->separator ?></span>
-					<?php endforeach; ?>
+					<?php foreach ( $authors_str as $author ) echo $author; ?>
 				</div>
-				<p class="pub-publisher"><?= $pub->publisher ?></p>
+				<div class="pub-publisher"><?= $pub->publisher ?></div>
+				
+				<!-- Show edit link to logged in user -->
+				<?php if ( is_user_logged_in() ) : ?>
+				
+				<div class="pub-edit-link float-right"><a href="<?= $edit_link ?>" target="_blank">edit</a></div>
+				
+				<?php endif; ?>
 			</div>
 
 		</div>

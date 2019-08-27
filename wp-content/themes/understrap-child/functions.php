@@ -37,8 +37,8 @@ add_action( 'after_setup_theme', 'add_child_theme_textdomain' );
 // ALLOW EMPTY EMAIL ADDRESS FOR EXTERNAL AUTHOR
 
 // This will suppress empty email errors when new user is External Author
-add_action('user_profile_update_errors', 'external_author_error_update', 10, 2 );
-function external_author_error_update( $errors, $user ) {    
+add_action('user_profile_update_errors', 'external_author_error_update', 10, 3 );
+function external_author_error_update( $errors, $update, $user ) {    
     if (  $user->role === 'external_author' )
         $errors->remove('empty_email');    
 }

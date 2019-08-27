@@ -1,4 +1,5 @@
 wp-config.php
+.htaccess
 .DS_Store
 /wp-content/ai1wm-backups/*
 /wp-content/aiowps_backups/*

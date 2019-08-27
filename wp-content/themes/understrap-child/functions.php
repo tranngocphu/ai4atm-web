@@ -50,19 +50,27 @@ add_action('edit_user_profile', 'external_author_form_update', 10, 1);
 function external_author_form_update( $form_type ) { ?>
     <script type="text/javascript">
 
+        $('#ure_select_other_roles').parent().parent().hide();
+        
         $('#role').change (function () {
 
             if ( this.value === 'external_author' ) {
             
                 $('#email').closest('tr').removeClass('form-required').find('.description').html("");
+                
                 // Uncheck send new user email option by default
                 <?php if (isset($form_type) && $form_type === 'add-new-user') : ?>
                     jQuery('#send_user_notification').removeAttr('checked');
                 <?php endif; ?>
+
+                $("#acf-field_5d624cd491a80 option[value='External Author']").attr("selected", "selected").change();
+                $("#acf-field_5d624cd491a80").prop('disabled', true);
             
             } else {
 
                 $('#email').closest('tr').addClass('form-required').find('.description').html("(required)");
+                $("#acf-field_5d624cd491a80 option[value='']").attr("selected", "selected").change();
+                $("#acf-field_5d624cd491a80").prop('disabled', false);
 
             } 
         })

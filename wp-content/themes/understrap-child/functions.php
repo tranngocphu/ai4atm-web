@@ -32,3 +32,41 @@ function add_child_theme_textdomain() {
     load_child_theme_textdomain( 'understrap-child', get_stylesheet_directory() . '/languages' );
 }
 add_action( 'after_setup_theme', 'add_child_theme_textdomain' );
+
+
+// ALLOW EMPTY EMAIL ADDRESS FOR EXTERNAL AUTHOR
+
+// This will suppress empty email errors when new user is External Author
+add_action('user_profile_update_errors', 'external_author_error_update', 10, 2 );
+function external_author_error_update( $errors, $user ) {    
+    if (  $user->role === 'external_author' )
+        $errors->remove('empty_email');    
+}
+
+// This will suppress JS validation of email field when Role changed to External Author
+add_action('user_new_form', 'external_author_form_update', 10, 1);
+add_action('show_user_profile', 'external_author_form_update', 10, 1);
+add_action('edit_user_profile', 'external_author_form_update', 10, 1);
+function external_author_form_update( $form_type ) { ?>
+    <script type="text/javascript">
+
+        $('#role').change (function () {
+
+            if ( this.value === 'external_author' ) {
+            
+                $('#email').closest('tr').removeClass('form-required').find('.description').html("");
+                // Uncheck send new user email option by default
+                <?php if (isset($form_type) && $form_type === 'add-new-user') : ?>
+                    jQuery('#send_user_notification').removeAttr('checked');
+                <?php endif; ?>
+            
+            } else {
+
+                $('#email').closest('tr').addClass('form-required').find('.description').html("(required)");
+
+            } 
+        })
+
+    </script>
+    <?php
+}

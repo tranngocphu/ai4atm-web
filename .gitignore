@@ -1,2 +1,6 @@
 wp-config.php
 .DS_Store
+/wp-content/ai1wm-backups/*
+/wp-content/aiowps_backups/*
+/wp-content/cache/*
+ai4atm.code-workspace

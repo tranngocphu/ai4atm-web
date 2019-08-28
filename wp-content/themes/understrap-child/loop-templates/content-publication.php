@@ -87,7 +87,7 @@ wp_reset_postdata();
 				<?php if ( $pdf_link ) : ?>
 
 				<div class="pub-pdf-link">
-					<i class="fa fa-download pub-download-icon" aria-hidden="true"></i> <a class="pub-download-link" href="<?= $pdf_link ?>" target="_blank">Download PDF</a> <span class="pub-access-mode">(<?= $access_mode ?>)</span>
+					<div class="pub-download"><i class="fa fa-download pub-download-icon" aria-hidden="true"></i> <a class="pub-download-link" href="<?= $pdf_link ?>" target="_blank">Download PDF</a> <span class="pub-access-mode">(<?= $access_mode ?>)</span></div>
 				</div>
 
 				<?php endif; ?>

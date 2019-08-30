@@ -5,3 +5,4 @@ wp-config.php
 /wp-content/aiowps_backups/*
 /wp-content/cache/*
 ai4atm.code-workspace
+wp-content/plugins/all-in-one-wp-migration/storage/error.log

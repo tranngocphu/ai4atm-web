@@ -8,11 +8,24 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-$user_query = new WP_User_Query( array( 'role__in' => array('Administrator','Editor','Author')));
-
-$results = $user_query->get_results();
-
+$group = array(
+	"advisors" => "Advisors",
+	"researchers" => "Researchers",
+	"students" => "Students",
+	"visitingscholars" => "Visiting Scholars",
+	"alumni" => "Alumni"
+)
 ?>
+
+<script type="text/javascript">
+
+function select ( id ) {
+	jQuery('.btn-staff').removeClass('btn-secondary btn-selected');
+	jQuery('.btn-staff').addClass('btn-outline-secondary btn-unselected');
+	jQuery('#'+id).addClass('btn-secondary btn-selected');
+}
+
+</script>
 
 <header class="entry-header">
 
@@ -22,43 +35,131 @@ $results = $user_query->get_results();
 
 <div class="row">
 
-<?php if ( ! empty( $results )  && shuffle( $results ) ) : ?>
 
-	<?php foreach ( $results as $user ) : 
-	if ( ! $user->active ) continue ?>
+	<!-- Staff categories -->
+	<div class="col-sm-12 col-md-4 col-lg-3 mb-5">
 
-	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-4">	
-		<div class="card profile-card">
-			<div class="card-img-block">			
-			</div>	
-			<div class="card-body pt-5">
-				<a href="<?php echo '/author/' . $user->user_login ?>"><img src="<?php echo esc_url( get_avatar_url( $user->ID ) ); ?>" alt="profile-image" class="profile"/></a>
-				<h5 class="card-title text-center mt-4"><?= $user->display_name ?></h5>
-				<div class="staff-position text-center mt-2"><?= $user->position ?></div>
-				<p class="card-text text-center"></p>
-			</div>
+		<div class="row">
+		<div class="col-xs-6 col-sm-6 col-md-12 mb-2">
+			<button id="all"         type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">All</button>
+			<button id="advisors"    type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">Advisors</button>
+			<button id="researchers" type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">Researchers</button>
 		</div>
+		<div class="col-xs-6 col-sm-6 col-md-12">
+			<button id="students"         type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">Students</button>
+			<button id="visitingscholars" type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">Visiting scholars</button>
+			<button id="alumni"           type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">Alumni</button>
+		</div>
+		</div>
+
 	</div>
 
-	<?php endforeach; ?>
+	<form method="get" id="people-form">	
+		<input type="text" id="staff_group" name="show" value="" hidden>
+	</form>	
 
-	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-4">	
-		<div class="card profile-card">
-			<div class="card-img-block">			
-			</div>	
-			<div class="card-body pt-5">
-				<a href="join-us"> <img src="/wp-content/uploads/2019/08/next-staff.jpg" alt="profile-image" class="profile"/></a>
-				<h5 class="card-title text-center mt-4">Wanna join us?</h5>
-				<a href="/join-us/"><div class="staff-position text-center mt-2">Explore the opportunities...</div></a>
-				<p class="card-text text-center"></p>
+<?php 
+	
+	if (  isset($_GET['show']) ) {
+
+		$id = $_GET['show'];
+		
+		$user_query = new WP_User_Query( array(
+			'meta_key' => 'group',
+			'meta_value' => $group[$id]
+		));
+
+		?>
+
+		<script type="text/javascript">
+			var id = "<?php echo $id ?>";
+			select( id );	
+			console.log(id);	
+		</script>		
+
+		<?php
+	
+	} else {
+
+		$id = "";
+
+		$user_query = new WP_User_Query( array( 'role__in' => array('Administrator','Editor','Author')));
+
+		?>
+
+		<script type="text/javascript">
+			select( "all" );
+		</script>
+
+		<?php	
+
+	} 	
+
+	$results = $user_query->get_results();
+
+?>
+
+	<!-- Staffs listing -->
+	<div class="col-sm-12 col-md-8 col-lg-9">
+		<div class="row">	
+
+			<?php if ( ! empty( $results )  && shuffle( $results ) ) : ?>
+
+				<?php foreach ( $results as $user ) : 
+				if ( ! $user->active ) continue ?>
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">	
+					<div class="card profile-card">
+						<div class="card-img-block">			
+						</div>	
+						<div class="card-body pt-5">
+							<a href="<?php echo '/author/' . $user->user_login ?>"><img src="<?php echo esc_url( get_avatar_url( $user->ID ) ); ?>" alt="profile-image" class="profile"/></a>
+							<h5 class="card-title text-center mt-4"><?= $user->display_name ?></h5>
+							<div class="staff-position text-center mt-2"><?= $user->position ?></div>
+							<p class="card-text text-center"></p>
+						</div>
+					</div>
+				</div>
+
+				<?php endforeach; ?>	
+
+			<?php else : ?>
+			
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4 text-center">	
+					No author found.
+				</div>
+
+			<?php endif; ?>	
+
+			<?php if ( $id !== "advisors" && $id !== "alumni" ) : ?>
+
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">	
+				<div class="card profile-card">
+					<div class="card-img-block">			
+					</div>	
+					<div class="card-body pt-5">
+						<a href="join-us"> <img src="/wp-content/uploads/2019/08/next-staff.jpg" alt="profile-image" class="profile"/></a>
+						<h5 class="card-title text-center mt-4">Wanna join us?</h5>
+						<a href="/join-us/"><div class="staff-position text-center mt-2">Explore the opportunities...</div></a>
+						<p class="card-text text-center"></p>
+					</div>
+				</div>
 			</div>
+
+			<?php endif; ?>
+		
 		</div>
-	</div>	
 
-<?php else : ?>
-
-	<div>No author found.</div>	
-
-<?php endif; ?>
+	</div>
 
 </div> <!-- row end -->
+
+
+<script type="text/javascript">
+
+	function show_staff( id ) {		
+		jQuery('#staff_group').val(id);		
+		jQuery('#people-form').submit();
+	}
+
+</script>

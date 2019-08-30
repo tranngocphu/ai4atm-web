@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Contact Full Width
+ * Template Name: All Publications Right Sidebar
  *
  * This template can be used to override the default template and sidebar setup
  *
@@ -20,15 +20,19 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 		<div class="row">
 
-			<div class="col-md-12 content-area" id="primary">
+			<div
+				class="<?php if ( is_active_sidebar( 'right-sidebar' ) ) : ?>col-md-8<?php else : ?>col-md-12<?php endif; ?> content-area"
+				id="primary">
 
 				<main class="site-main" id="main" role="main">
 
-				<?php get_template_part( 'loop-templates/content', 'contact' ); ?>
+				<?php get_template_part( 'loop-templates/content', 'all-publication' ); ?>
 
 				</main><!-- #main -->
 
 			</div><!-- #primary -->
+
+			<?php get_template_part( 'sidebar-templates/sidebar', 'right' ); ?>
 
 		</div><!-- .row -->
 

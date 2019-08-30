@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Publication Right Sidebar
+ * Template Name: All Projects Right Sidebar
  *
  * This template can be used to override the default template and sidebar setup
  *
@@ -26,7 +26,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 				<main class="site-main" id="main" role="main">
 
-				<?php get_template_part( 'loop-templates/content', 'publication' ); ?>
+				<?php get_template_part( 'loop-templates/content', 'all-project' ); ?>
 
 				</main><!-- #main -->
 

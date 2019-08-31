@@ -71,12 +71,12 @@ wp_reset_postdata();
 		<div class="row pub-item"> 
 			
 			<!-- Year : -->
-			<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-xl-1">
+			<div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-1">
 				<div class="pub-year"><?= $pub->year ?></div>
 			</div>
 			
 			<!-- Title, Author, Publisher : -->
-			<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 col-xl-11">
+			<div class="col-9 col-sm-9 col-md-10 col-lg-10 col-xl-11">
 				<div class="pub-title"><?= $pub->article_title ?></div>
 				
 				<div class="pub-author-list">

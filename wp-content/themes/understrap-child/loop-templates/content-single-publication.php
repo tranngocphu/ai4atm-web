@@ -31,11 +31,11 @@ foreach ( $author_ids as $id ) {
 	
 	<div class="row mt-4">
 
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">			
+		<div class="col-12 col-sm-12 col-md-12 col-lg-4">			
 			
 			<div class="row">
 			<?php foreach ( $authors as $author ) : ?>
-				<div class="col-xs-6 col-sm-4 col-md-4 col-lg-6">
+				<div class="col-6 col-sm-4 col-md-4 col-lg-6">
 					<div class="single-pub-author-item">			
 						<div class="text-center">
 							<a href="<?php echo '/author/' . $author->user_login ?>">
@@ -50,7 +50,7 @@ foreach ( $author_ids as $id ) {
 			
 		</div>
 
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-8">
 			<p><span style="font-weight: bold">Abstract: </span><?= get_post()->abstract ?></p>
 
 			<?php if ( get_post()->pdf_article ) : ?>

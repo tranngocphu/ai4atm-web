@@ -201,3 +201,35 @@ body, h1, h2, h3, h4, h5, a {
     margin-bottom: 20px;
     min-width: 0px;
 }
+
+
+
+/* SINGLE AUTHOR PAGE */
+.author-profile {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* CONTACT PAGE */
+.contact-gg-map {
+    padding-left: auto;
+    padding-right: auto;
+    position: relative;
+    padding-bottom: 75%; 
+    height: 0;
+    overflow: hidden;
+}
+
+
+.contact-gg-map iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}

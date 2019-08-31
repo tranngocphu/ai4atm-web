@@ -30,7 +30,7 @@ function select ( id ) {
 
 <header class="entry-header">
 
-	<h1 class="text-center mb-5">Meet the team</h1>
+	<h1 class="text-center mb-5">The AI Team</h1>
 
 </header><!-- .entry-header -->
 
@@ -41,12 +41,12 @@ function select ( id ) {
 	<div class="col-sm-12 col-md-4 col-lg-3 mb-5">
 
 		<div class="row">
-		<div class="col-xs-6 col-sm-6 col-md-12 mb-2">
+		<div class="col-6 col-sm-6 col-md-12 mb-2">
 			<button id="all"         type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["all"] ?></button>
 			<button id="advisors"    type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["advisors"] ?></button>
 			<button id="researchers" type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["researchers"] ?></button>
 		</div>
-		<div class="col-xs-6 col-sm-6 col-md-12">
+		<div class="col-6 col-sm-6 col-md-12">
 			<button id="students"         type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["students"] ?></button>
 			<button id="visitingscholars" type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["visitingscholars"] ?></button>
 			<button id="alumni"           type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["alumni"] ?></button>
@@ -107,7 +107,7 @@ function select ( id ) {
 				<?php foreach ( $results as $user ) : 
 				if ( ! $user->active ) continue ?>
 
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">	
+				<div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">	
 					<div class="card profile-card">
 						<div class="card-img-block">			
 						</div>	
@@ -124,7 +124,7 @@ function select ( id ) {
 
 			<?php else : ?>
 			
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4 text-center">	
+				<div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4 text-center">	
 					No author found.
 				</div>
 
@@ -132,7 +132,7 @@ function select ( id ) {
 
 			<?php if ( $id !== "advisors" && $id !== "alumni" ) : ?>
 
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">	
+			<div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">	
 				<div class="card profile-card">
 					<div class="card-img-block">			
 					</div>	

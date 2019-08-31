@@ -77,12 +77,12 @@ wp_reset_postdata();
 		<div class="row pub-item"> 
 			
 			<!-- Year : -->
-			<div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-1">
+			<div class="col-2 col-sm-2 col-md-1">
 				<div class="pub-year"><?= substr($pub->year, 0, 4) ?></div>
 			</div>
 			
 			<!-- Title, Author, Publisher : -->
-			<div class="col-9 col-sm-9 col-md-10 col-lg-10 col-xl-11">
+			<div class="col-10 col-sm-10 col-md-11">
 				<div class="pub-title"><?= $pub->post_title ?></div>
 				
 				<div class="pub-author-list">
@@ -91,13 +91,15 @@ wp_reset_postdata();
 				
 				<div class="pub-publisher"><?= $pub->publisher ?></div>
 
-				<div class="pub-abstract-pdf">
+				<div class="pub-abstract-pdf mt-1">
 					<span class="ml-3"><i class="fa fa-info-circle pub-abstract-icon" aria-hidden="true"></i><a class="pub-abstract-link" href="<?= $pub_link ?>">Abstract</a></span>
 				
 					<?php if ( $pdf_link ) : ?>
+						<span class="ml-3"><i class="fa fa-download pub-download-icon" aria-hidden="true"></i><a class="pub-download-link" href="<?= $pdf_link ?>" target="_blank">Download PDF</a><span class="pub-access-mode">(<?= $access_mode ?>)</span></span>
+					<?php endif; ?>
 
-					<span class="ml-3"><i class="fa fa-download pub-download-icon" aria-hidden="true"></i><a class="pub-download-link" href="<?= $pdf_link ?>" target="_blank">Download PDF</a><span class="pub-access-mode">(<?= $access_mode ?>)</span></span>
-
+					<?php if ( is_user_logged_in() ) : ?>				
+						<div class="pub-edit-link float-right"><a href="<?= $edit_link ?>" target="_blank">edit</a></div>				
 					<?php endif; ?>
 				
 				</div>
@@ -105,11 +107,7 @@ wp_reset_postdata();
 
 				
 				<!-- Show edit link to logged in user -->
-				<?php if ( is_user_logged_in() ) : ?>
-				
-				<div class="pub-edit-link float-right"><a href="<?= $edit_link ?>" target="_blank">edit</a></div>
-				
-				<?php endif; ?>
+
 			</div>
 
 		</div>

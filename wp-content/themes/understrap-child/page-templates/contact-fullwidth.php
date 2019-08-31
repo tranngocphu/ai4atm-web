@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Projects Full Width
+ * Template Name: Contact Full Width
  *
  * This template can be used to override the default template and sidebar setup
  *
@@ -18,19 +18,15 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 	<div class="<?php echo esc_attr( $container ); ?>" id="content">
 
-		<div class="row">
+		<div class="content-area" id="primary">
 
-			<div class="col-md-12 content-area" id="primary">
+			<main class="site-main" id="main" role="main">
 
-				<main class="site-main" id="main" role="main">
+			<?php get_template_part( 'loop-templates/content', 'contact' ); ?>
 
-				<?php get_template_part( 'loop-templates/content', 'project' ); ?>
+			</main><!-- #main -->
 
-				</main><!-- #main -->
-
-			</div><!-- #primary -->
-
-		</div><!-- .row -->
+		</div><!-- #primary -->
 
 	</div><!-- #content -->
 

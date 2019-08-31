@@ -7,50 +7,40 @@
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
+
+
+$args = array (
+	'post_type' => 'contact_info'	
+);
+
+$contact = new WP_Query( $args );
+$contact = $contact->posts[0];
+
+
 ?>
 
 
-<?php /* 
+<h3 class="text-center mb-5">CONTACT US</h3>
 
-This is html, but commented out by php commentor
+<div class="row">
 
-<article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
+	<div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
+		<div class="col-12 contact-gg-map">
+			<?= $contact->map ?>
+		</div>
+	</div>
 
-	<header class="entry-header">
+	<div class="col-12 col-sm-12 col-md-12 col-lg-6">
+		<h5>Contact person</h5>
+		<div><?= $contact->prefix . ' ' . $contact->full_name ?></div>
+		<div><a href="mailto:<?= $contact->email ?>"><?= $contact->email ?></a></div>
+		
+		<h5 class="mt-3">Address</h5>
+		<div><?= $contact->address ?></div>
+		
+		<h5 class="mt-3">Contact form</h5>
+		<?php wpforms_display( 147, "", "" ); ?>
+	</div>
 
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-	</header><!-- .entry-header -->
-
-	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-
-	<div class="entry-content">
-
-		<?php the_content(); ?>
-
-		<?php
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'understrap' ),
-				'after'  => '</div>',
-			)
-		);
-		?>
-
-	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-
-		<?php edit_post_link( __( 'Edit', 'understrap' ), '<span class="edit-link">', '</span>' ); ?>
-
-	</footer><!-- .entry-footer -->
-
-</article><!-- #post-## --> 
-
- */ ?>
-
- <div>
-
-		Contact info.
-
- </div>
+</div>

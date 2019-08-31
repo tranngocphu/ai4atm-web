@@ -51,13 +51,15 @@ foreach ( $author_ids as $id ) {
 		</div>
 
 		<div class="col-12 col-sm-12 col-md-12 col-lg-8">
+			<?php if (  get_post()->abstract ) : ?>			
 			<p><span style="font-weight: bold">Abstract: </span><?= get_post()->abstract ?></p>
+			<?php endif; ?>
 
 			<?php if ( get_post()->pdf_article ) : ?>
 			<p><i class="fa fa-download pub-download-icon" aria-hidden="true"></i><a class="ml-2" href="<?= wp_get_attachment_url( get_post()->pdf_article ) ?>" target="_blank">Download PDF </a><span class="pub-access-mode">(<?= get_post()->full_text ?>)</span></p>
 			<?php endif; ?>
 
-			<p>Full text:<br />
+			<p><span style="font-weight: bold">Full text:</span><br />
 			<a class="" href="<?= get_post()->link ?>" target="_blank"><?= get_post()->link ?></a>
 			</p>
 		</div>

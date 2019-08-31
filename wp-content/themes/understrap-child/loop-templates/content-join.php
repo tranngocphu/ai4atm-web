@@ -10,10 +10,6 @@ defined( 'ABSPATH' ) || exit;
 ?>
 
 
-<?php /* 
-
-This is html, but commented out by php commentor
-
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
 	<header class="entry-header">
@@ -45,12 +41,4 @@ This is html, but commented out by php commentor
 
 	</footer><!-- .entry-footer -->
 
-</article><!-- #post-## --> 
-
- */ ?>
-
- <div>
-
-		Recruiment info.
-
- </div>
+</article><!-- #post-## -->

@@ -10,12 +10,15 @@ defined( 'ABSPATH' ) || exit;
 
 $author_ids = get_post()->authors;		
 $authors = [];
-$authors_str = [];
 
-foreach ( $author_ids as $id ) {		
-	$author_query = new WP_User_Query( array( 'include' => array( (int)$id ) ) );
-	array_push( $authors, $author_query->get_results()[0] );			
+if ( $author_ids ) {
+	foreach ( $author_ids as $id ) {		
+		$author_query = new WP_User_Query( array( 'include' => array( (int)$id ) ) );
+		array_push( $authors, $author_query->get_results()[0] );			
+	}
 }
+
+
 
 ?>
 
@@ -34,7 +37,7 @@ foreach ( $author_ids as $id ) {
 		<div class="col-12 col-sm-12 col-md-12 col-lg-4">			
 			
 			<div class="row">
-			<?php foreach ( $authors as $author ) : ?>
+			<?php if ( $author_ids ) foreach ( $authors as $author ) : ?>
 				<div class="col-6 col-sm-4 col-md-4 col-lg-6">
 					<div class="single-pub-author-item">			
 						<div class="text-center">
@@ -59,27 +62,14 @@ foreach ( $author_ids as $id ) {
 			<p><i class="fa fa-download pub-download-icon" aria-hidden="true"></i><a class="ml-2" href="<?= wp_get_attachment_url( get_post()->pdf_article ) ?>" target="_blank">Download PDF </a><span class="pub-access-mode">(<?= get_post()->full_text ?>)</span></p>
 			<?php endif; ?>
 
+			<?php if ( get_post()->link ) : ?>
 			<p><span style="font-weight: bold">Full text:</span><br />
 			<a class="" href="<?= get_post()->link ?>" target="_blank"><?= get_post()->link ?></a>
 			</p>
+			<?php endif; ?>
 		</div>
 
 	</div>
-
-	<div class="entry-content">
-
-		<?php the_content(); ?>
-
-		<?php
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'understrap' ),
-				'after'  => '</div>',
-			)
-		);
-		?>
-
-	</div><!-- .entry-content -->
 
 	<footer class="entry-footer mt-5">
 

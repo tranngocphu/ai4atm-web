@@ -17,7 +17,9 @@ $args = array (
 );
 
 $query_pub = new WP_Query( $args );
+
 $pubs = $query_pub->posts;
+
 wp_reset_postdata();
 
 ?>
@@ -38,49 +40,53 @@ wp_reset_postdata();
 		$authors = [];
 		$authors_str = [];
 
-		foreach ( $author_ids as $id ) {		
-			$author_query = new WP_User_Query( array( 'include' => array( (int)$id ) ) );
-			array_push( $authors, $author_query->get_results()[0] );			
-		}
-		
-		$count = sizeof($authors);		
-		$x = 0;
-
-		foreach ($authors as $author) {
+		if (  $author_ids ) {
 			
-			
-			$separator = ( $x < $count -1 ) ? ' &#183; ' : '';		
-			
-			$name = $author->full_name;
-			$link = "/author/" . $author->user_login;
-
-			if ( $author->roles[0] === 'external_author' ) {
-				
-				$authors_str[] = '<span class="pub-each-author">' . $name . $separator . '</span>';
-			
-			} else {
-
-				$authors_str[] = '<span class="pub-each-author"><a href="' . $link .'">' . $name . '</a>' . $separator . '</span>';
-
+			foreach ( $author_ids as $id ) {		
+				$author_query = new WP_User_Query( array( 'include' => array( (int)$id ) ) );
+				array_push( $authors, $author_query->get_results()[0] );			
 			}
-		
-			$x += 1;
-		};	
+			
+			$count = sizeof($authors);
+			
+			$x = 0;
+
+			foreach ($authors as $author) {
+			
+			
+				$separator = ( $x < $count -1 ) ? ' &#183; ' : '';		
+				
+				$name = $author->full_name;
+				$link = "/author/" . $author->user_login;
+	
+				if ( $author->roles[0] === 'external_author' ) {
+					
+					$authors_str[] = '<span class="pub-each-author">' . $name . $separator . '</span>';
+				
+				} else {
+	
+					$authors_str[] = '<span class="pub-each-author"><a href="' . $link .'">' . $name . '</a>' . $separator . '</span>';
+	
+				}
+			
+				$x += 1;
+			};
+		}
 		?>
 
 		<div class="row pub-item"> 
 			
 			<!-- Year : -->
 			<div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-1">
-				<div class="pub-year"><?= $pub->year ?></div>
+				<div class="pub-year"><?= substr($pub->year, 0, 4) ?></div>
 			</div>
 			
 			<!-- Title, Author, Publisher : -->
 			<div class="col-9 col-sm-9 col-md-10 col-lg-10 col-xl-11">
-				<div class="pub-title"><?= $pub->article_title ?></div>
+				<div class="pub-title"><?= $pub->post_title ?></div>
 				
 				<div class="pub-author-list">
-					<?php foreach ( $authors_str as $author ) echo $author; ?>
+					<?php if ( $authors_str ) foreach ( $authors_str as $author ) echo $author; ?>
 				</div>
 				
 				<div class="pub-publisher"><?= $pub->publisher ?></div>

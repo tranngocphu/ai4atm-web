@@ -107,7 +107,7 @@ function select ( id ) {
 				<?php foreach ( $results as $user ) : 
 				if ( ! $user->active ) continue ?>
 
-				<div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">	
+				<div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">	
 					<div class="card profile-card">
 						<div class="card-img-block">			
 						</div>	
@@ -124,7 +124,7 @@ function select ( id ) {
 
 			<?php else : ?>
 			
-				<div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4 text-center">	
+				<div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4 text-center">	
 					No author found.
 				</div>
 
@@ -132,7 +132,7 @@ function select ( id ) {
 
 			<?php if ( $id !== "advisors" && $id !== "alumni" ) : ?>
 
-			<div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">	
+			<div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">	
 				<div class="card profile-card">
 					<div class="card-img-block">			
 					</div>	

@@ -9,9 +9,10 @@
 defined( 'ABSPATH' ) || exit;
 
 $group = array(
+	"all" => "All",
 	"advisors" => "Advisors",
 	"researchers" => "Researchers",
-	"students" => "Students",
+	"students" => "PhD Students",
 	"visitingscholars" => "Visiting Scholars",
 	"alumni" => "Alumni"
 )
@@ -41,14 +42,14 @@ function select ( id ) {
 
 		<div class="row">
 		<div class="col-xs-6 col-sm-6 col-md-12 mb-2">
-			<button id="all"         type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">All</button>
-			<button id="advisors"    type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">Advisors</button>
-			<button id="researchers" type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">Researchers</button>
+			<button id="all"         type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["all"] ?></button>
+			<button id="advisors"    type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["advisors"] ?></button>
+			<button id="researchers" type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["researchers"] ?></button>
 		</div>
 		<div class="col-xs-6 col-sm-6 col-md-12">
-			<button id="students"         type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">Students</button>
-			<button id="visitingscholars" type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">Visiting scholars</button>
-			<button id="alumni"           type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">Alumni</button>
+			<button id="students"         type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["students"] ?></button>
+			<button id="visitingscholars" type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["visitingscholars"] ?></button>
+			<button id="alumni"           type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["alumni"] ?></button>
 		</div>
 		</div>
 
@@ -60,10 +61,10 @@ function select ( id ) {
 
 <?php 
 	
-	if (  isset($_GET['show']) ) {
+	if (  isset($_GET['show']) && $_GET['show'] != 'all' ) {
 
 		$id = $_GET['show'];
-		
+
 		$user_query = new WP_User_Query( array(
 			'meta_key' => 'group',
 			'meta_value' => $group[$id]
@@ -80,8 +81,6 @@ function select ( id ) {
 		<?php
 	
 	} else {
-
-		$id = "";
 
 		$user_query = new WP_User_Query( array( 'role__in' => array('Administrator','Editor','Author')));
 

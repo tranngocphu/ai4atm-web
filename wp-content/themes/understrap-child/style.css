@@ -15,6 +15,14 @@
 
 /* Added by Phu Tran */
 
+
+
+:root {
+    --first-color: #7C008C;
+    --second-color: #007bff; 
+}
+
+
 /* global */
 
 .breadcrumbs-wrapper {
@@ -38,6 +46,14 @@
 
 body, h1, h2, h3, h4, h5, a {
     color : var(--gray);
+}
+
+.entry-title {
+
+}
+
+.entry-header {
+
 }
 
 
@@ -163,12 +179,24 @@ body, h1, h2, h3, h4, h5, a {
     text-decoration: underline;
 }
 
-.pub-download-icon {
-    color : var(--blue);
+.pub-download-icon, .pub-abstract-icon {
+    color : var(--first-color);
 }
 
-.pub-download {
+.pub-download-link, .pub-abstract-link, .pub-access-mode {
     font-size: 90%;
     margin-top: .1rem;
-    margin-left: 1rem;
+    margin-left: .2rem;
+}
+
+
+/* SINGLE PUBLICATIONS PAGE */
+
+.single-pub-profile {
+    width : 70px;
+    border-radius: 50%;
+}
+
+.single-pub-author-item {
+    margin-bottom: 20px;
 }

@@ -137,7 +137,7 @@ function select ( id ) {
 					<div class="card-img-block">			
 					</div>	
 					<div class="card-body pt-5">
-						<a href="join-us"> <img src="/wp-content/uploads/2019/08/next-staff.jpg" alt="profile-image" class="profile"/></a>
+						<a href="join-us"> <img src="/ai4atm/empty-avatar-150x150.jpg" alt="profile-image" class="profile"/></a>
 						<h5 class="card-title text-center mt-4">Wanna join us?</h5>
 						<a href="/join-us/"><div class="staff-position text-center mt-2">Explore the opportunities...</div></a>
 						<p class="card-text text-center"></p>

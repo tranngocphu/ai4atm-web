@@ -11,28 +11,45 @@
 defined( 'ABSPATH' ) || exit;
 
 get_header();
+
 $container = get_theme_mod( 'understrap_container_type' );
+
+if ( isset( $_GET['author_name'] ) ) {
+	$curauth = get_user_by( 'slug', $author_name );
+} else {
+	$curauth = get_userdata( intval( $author ) );
+}
+
+
 ?>
 
 <div class="wrapper" id="author-wrapper">
 
 	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
 
-		<div class="row">
-
 			<main class="site-main" id="main">
 
-				<header class="page-header author-header">
 
-					<?php
-					if ( isset( $_GET['author_name'] ) ) {
-						$curauth = get_user_by( 'slug', $author_name );
-					} else {
-						$curauth = get_userdata( intval( $author ) );
-					}
-					?>
+				<div class="row">
+					
+					<!-- Left columns: Profile pic and full name with prefix -->
+					<div class="col-4">
+						<img src="<?php echo esc_url( get_avatar_url( $curauth->ID ) ); ?>" alt="profile-image" class="author-profile"/>
+					</div>
 
-					<h3><?php echo esc_html__( 'About:', 'understrap' ) . ' ' . esc_html( $curauth->display_name ); ?></h3>
+					<!-- Right column: Details bio and publications -->
+					<div class="col-8">
+						<h3 class=""><?php  echo esc_html( $curauth->display_name ); ?></h3>
+					
+					
+					
+					</div>  
+				
+				</div> 
+
+				<header class="page-header author-header" hidden>
+
+					<h3><?php  echo esc_html__( 'About:', 'understrap' ) . ' ' . esc_html( $curauth->display_name ); ?></h3>
 
 					<?php if ( ! empty( $curauth->ID ) ) : ?>
 						<?php echo get_avatar( $curauth->ID ); ?>
@@ -53,56 +70,12 @@ $container = get_theme_mod( 'understrap_container_type' );
 							<?php endif; ?>
 						</dl>
 					<?php endif; ?>
-					
-					
-					
-					
 
 				</header><!-- .page-header -->
 				
-				<h4 class="mt-5"><?php echo esc_html( 'Publications:', 'understrap' ) ?></h4>
-				
-				<h4 class="mt-5"><?php 
-					//echo esc_html( 'Posts by', 'understrap' ) . ' ' . esc_html( $curauth->display_name ); 
-					echo esc_html( 'Posts:', 'understrap' ); 
-				?></h4>
-
-				<ul>
-
-					<!-- The Loop -->
-					<?php if ( have_posts() ) : ?>
-						<?php while ( have_posts() ) : the_post(); ?>
-							<li>
-								<?php
-								printf(
-									'<a rel="bookmark" href="%1$s" title="%2$s %3$s">%3$s</a>',
-									esc_url( apply_filters( 'the_permalink', get_permalink( $post ), $post ) ),
-									esc_attr( __( 'Permanent Link:', 'understrap' ) ),
-									the_title( '', '', false )
-								);
-								?>
-								<?php understrap_posted_on(); ?>
-								<?php esc_html_e( 'in', 'understrap' ); ?>
-								<?php the_category( '&' ); ?>
-							</li>
-						<?php endwhile; ?>
-
-					<?php else : ?>
-
-						<?php get_template_part( 'loop-templates/content', 'none' ); ?>
-
-					<?php endif; ?>
-
-					<!-- End Loop -->
-
-				</ul>
+				<h4 class="mt-5" hidden><?php echo esc_html( 'Publications:', 'understrap' ) ?></h4>
 
 			</main><!-- #main -->
-
-			<!-- The pagination component -->
-			<?php understrap_pagination(); ?>
-
-		</div> <!-- .row -->
 
 	</div><!-- #content -->
 

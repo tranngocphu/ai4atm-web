@@ -125,9 +125,8 @@ function select ( id ) {
 						</div>	 -->
 						<div class="card-body pt-5">
 							<a href="<?php echo '/author/' . $user->user_login ?>"><img src="<?php echo esc_url( get_avatar_url( $user->ID ) ); ?>" alt="profile-image" class="profile"/></a>
-							<h5 class="staff-name text-center mt-4"><?= $user->display_name ?></h5>
+							<div class="staff-name text-center mt-4"><?= $user->full_name ?></div>
 							<div class="staff-position text-center mt-2"><?= $user->position ?></div>
-							<p class="card-text text-center"></p>
 						</div>
 					</div>
 				</div>
@@ -148,9 +147,8 @@ function select ( id ) {
 				<div class="card profile-card">
 					<div class="card-body pt-5">
 						<a href="join-us"> <img src="/ai4atm/empty-avatar-150x150.jpg" alt="profile-image" class="profile"/></a>
-						<h5 class="staff-name text-center mt-4">Wanna join us?</h5>
+						<div class="staff-name text-center mt-4">Wanna join us?</div>
 						<a href="/join-us/"><div class="staff-position text-center mt-2">Explore the opportunities...</div></a>
-						<p class="card-text text-center"></p>
 					</div>
 				</div>
 			</div>

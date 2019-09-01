@@ -48,16 +48,6 @@ body, h1, h2, h3, h4, h5, a {
     color : var(--gray);
 }
 
-.entry-title {
-
-}
-
-.entry-header {
-
-}
-
-
-
 /* PEOPE PAGE */
 
 .profile-card {
@@ -82,6 +72,7 @@ body, h1, h2, h3, h4, h5, a {
 .profile-card .staff-name {
     position: relative;
     top: 65px;
+    font-size: 110%;
 }
 
 .profile-card .staff-position {
@@ -100,9 +91,9 @@ body, h1, h2, h3, h4, h5, a {
     -webkit-transition: all 1s ease;
     transition: all 1s ease;
 }
-.profile-card h5{
+.profile-card .staff-name {
     font-weight:600;
-    color:#7c008c;
+    color: var(--first-color);
     max-height: 70px;
 }
 .profile-card .card-text{
@@ -113,25 +104,6 @@ body, h1, h2, h3, h4, h5, a {
     float:left;
     width:100%;
 }
-.profile-card .icon-block a{
-    text-decoration:none;
-}
-.profile-card i {
-  display: inline-block;
-    font-size: 16px;
-    color: #7c008c;
-    text-align: center;
-    border: 1px solid #7c008c;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 50%;
-    margin:0 5px;
-}
-.profile-card i:hover {
-  background-color:#7c008c;
-  color:#fff;
-}
 
 .btn-staff {
     border : thin solid #d1d1d1;
@@ -139,7 +111,7 @@ body, h1, h2, h3, h4, h5, a {
 
 .btn-selected {
     color : white!important;
-    background-color: #7c008c;
+    background-color: var(--first-color);
 }
 
 .btn-unselected {

@@ -124,7 +124,7 @@ function select ( id ) {
 						<!-- <div class="card-img-block">			
 						</div>	 -->
 						<div class="card-body pt-5">
-							<a href="<?php echo '/author/' . $user->user_login ?>"><img src="<?php echo esc_url( get_avatar_url( $user->ID ) ); ?>" alt="profile-image" class="profile"/></a>
+							<a href="<?= get_author_posts_url( $user->ID ) ?>"><img src="<?php echo esc_url( get_avatar_url( $user->ID ) ); ?>" alt="profile-image" class="profile"/></a>
 							<div class="staff-name text-center mt-4"><?= $user->full_name ?></div>
 							<div class="staff-position text-center mt-2"><?= $user->position ?></div>
 						</div>

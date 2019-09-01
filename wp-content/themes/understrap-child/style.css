@@ -20,10 +20,17 @@
 :root {
     --first-color: #7C008C;
     --second-color: #007bff; 
+
+    --home-blue: #0d47a1;
+    --home-green: #00695c;
+    --home-pink: #9933CC;
+    --home-black: #212121;
+    --home-gray: #3E4551;
+    --home-dark-blue: #3F729B;
 }
 
 
-/* global */
+/* GLOBAL */
 
 .breadcrumbs-wrapper {
     background-color: #ededed; 
@@ -56,6 +63,54 @@ body, h1, h2, h3, h4, h5, a {
 .search-icon {
     color: white;
 }
+
+
+/* HOME PAGE */
+
+.home-content-wrapper {
+    padding: 0;
+}
+
+.home-sliders-wrapper, 
+.home-news-wrapper,
+.home-research-wrapper,
+.home-publications-wrapper,
+.home-people-wrapper,
+.home-join-wrapper  {
+    height: 100px;
+    padding: 10px;
+}
+
+.home-sliders-wrapper {
+    background-color: var(--home-blue);
+    height: 300px;
+}
+
+.home-people-wrapper {
+    background-color: #eeeeee;
+}
+
+.home-news-wrapper {
+    background-color: var(--home-green);
+}
+
+.home-research-wrapper {
+    background-color: var(--first-color);
+}
+
+.home-publications-wrapper {
+    background-color: var(--home-green);
+}
+
+.home-join-wrapper {
+    background-color: var(--home-blue);
+}
+
+.home-section-title {
+    text-transform: uppercase;
+}
+
+
 
 /* PEOPE PAGE */
 
@@ -127,6 +182,25 @@ body, h1, h2, h3, h4, h5, a {
     color : var(--gray-dark);
 }
 
+
+
+/* SINGLE AUTHOR PAGE */
+.author-profile {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.author-in-pub {
+    font-weight: bold;
+    color: var(--gray-dark);
+}
+
+
+
 /* PUBLICATIONS PAGE */
 
 .pub-wrapper {    
@@ -163,7 +237,9 @@ body, h1, h2, h3, h4, h5, a {
     font-size: 90%;
 }
 
-/* SINGLE PUBLICATIONS PAGE */
+
+
+/* SINGLE PUBLICATION PAGE */
 
 .single-pub-profile {
     width : 70px;
@@ -177,22 +253,6 @@ body, h1, h2, h3, h4, h5, a {
 
 
 
-/* SINGLE AUTHOR PAGE */
-.author-profile {
-    width: 100%;
-    max-width: 200px;
-    border-radius: 50%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.author-in-pub {
-    font-weight: bold;
-    color: var(--gray-dark);
-}
-
-
 /* CONTACT PAGE */
 .contact-gg-map {
     padding-left: auto;
@@ -202,7 +262,6 @@ body, h1, h2, h3, h4, h5, a {
     height: 0;
     overflow: hidden;
 }
-
 
 .contact-gg-map iframe {
     position: absolute;

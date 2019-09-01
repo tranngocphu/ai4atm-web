@@ -13,9 +13,22 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 
-while ( have_posts() ) :
-	the_post();
-	get_template_part( 'loop-templates/content', 'front-page' );
-endwhile;
+?>
 
-get_footer();
+<div class="container-fluid home-content-wrapper">
+
+	<?php get_template_part( 'loop-templates/content', 'front-page-sliders' ); ?>
+
+	<?php get_template_part( 'loop-templates/content', 'front-page-people' ); ?>
+
+	<?php get_template_part( 'loop-templates/content', 'front-page-news' ); ?>
+
+	<?php get_template_part( 'loop-templates/content', 'front-page-research' ); ?>
+
+	<?php get_template_part( 'loop-templates/content', 'front-page-publications' ); ?>
+
+	<?php get_template_part( 'loop-templates/content', 'front-page-join' ); ?>
+
+</div>
+
+<?php get_footer(); ?>

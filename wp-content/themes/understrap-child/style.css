@@ -179,14 +179,18 @@ body, h1, h2, h3, h4, h5, a {
     text-decoration: underline;
 }
 
-.pub-download-icon, .pub-abstract-icon {
+.pub-download-icon, .pub-abstract-icon, .pub-edit-icon {
     color : var(--first-color);
 }
 
 .pub-download-link, .pub-abstract-link, .pub-access-mode {
     font-size: 90%;
-    margin-top: .1rem;
-    margin-left: .2rem;
+    /* margin-top: .1rem; */
+    /* margin-left: .2rem; */
+}
+
+.pub-title-author-publisher {
+    line-height: 1.4;
 }
 
 

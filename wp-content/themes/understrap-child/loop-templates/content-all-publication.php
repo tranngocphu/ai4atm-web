@@ -83,31 +83,42 @@ wp_reset_postdata();
 			
 			<!-- Title, Author, Publisher : -->
 			<div class="col-10 col-sm-10 col-md-11">
-				<div class="pub-title"><?= $pub->post_title ?></div>
-				
-				<div class="pub-author-list">
-					<?php if ( $authors_str ) foreach ( $authors_str as $author ) echo $author; ?>
-				</div>
-				
-				<div class="pub-publisher"><?= $pub->publisher ?></div>
 
-				<div class="pub-abstract-pdf mt-1">
-					<span class="ml-3"><i class="fa fa-info-circle pub-abstract-icon" aria-hidden="true"></i><a class="pub-abstract-link" href="<?= $pub_link ?>">Abstract</a></span>
-				
-					<?php if ( $pdf_link ) : ?>
-						<span class="ml-3"><i class="fa fa-download pub-download-icon" aria-hidden="true"></i><a class="pub-download-link" href="<?= $pdf_link ?>" target="_blank">Download PDF</a><span class="pub-access-mode">(<?= $access_mode ?>)</span></span>
-					<?php endif; ?>
-
-					<?php if ( is_user_logged_in() ) : ?>				
-						<div class="pub-edit-link float-right"><a href="<?= $edit_link ?>" target="_blank">edit</a></div>				
-					<?php endif; ?>
-				
-				</div>
-				
-
-				
-				<!-- Show edit link to logged in user -->
-
+				<div class="row">					
+					<!-- Title, Authors, Publisher -->
+					<div class="col-12 col-md-9 col-lg-10 col-xl-10 pub-title-author-publisher mb-1">
+						<div class="pub-title"><?= $pub->post_title ?></div>
+						<div class="pub-author-list">
+							<?php if ( $authors_str ) foreach ( $authors_str as $author ) echo $author; ?>
+						</div>
+						<div class="pub-publisher"><?= $pub->publisher ?></div>
+					</div>	
+					
+					<!-- Abstract, Download, Edit Links -->
+					<div class="col-12 col-md-3 col-lg-2 col-xl-2">
+						<div class="row pub-abstract-pdf">
+							<!-- Abstract link -->
+							<div class="col-4 col-md-12 mb-1">
+								<i class="fa fa-info-circle pub-abstract-icon" aria-hidden="true"></i>
+								<a class="pub-abstract-link" href="<?= $pub_link ?>">Abstract</a>
+							</div>	
+							<!-- Download link -->							
+							<?php if ( $pdf_link ) : ?>
+							<div class="col-4 col-md-12 mb-1">
+									<i class="fa fa-download pub-download-icon" aria-hidden="true"></i>
+									<a class="pub-download-link" href="<?= $pdf_link ?>" target="_blank"><?= $access_mode ?></a>
+							</div>
+							<?php endif; ?>								
+							<!-- Edit link -->							
+							<?php if ( is_user_logged_in() ) : ?>
+							<div class="col-4 col-md-12 mb-1">									
+								<i class="fa fa-edit pub-edit-icon"></i>
+								<a class="pub-edit-link" href="<?= $edit_link ?>" target="_blank">Edit</a>
+							</div>				
+							<?php endif; ?>							
+						</div>
+					</div>				
+				</div>			
 			</div>
 
 		</div>

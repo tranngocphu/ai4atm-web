@@ -139,7 +139,7 @@ body, h1, h2, h3, h4, h5, a {
     border-color: #cccccc;
     padding-top: 10px;
     padding-bottom: 10px;
-    line-height: 1.20;
+    line-height: 1.40;
 }
 
 .pub-publisher {
@@ -161,14 +161,7 @@ body, h1, h2, h3, h4, h5, a {
 
 .pub-download-link, .pub-abstract-link, .pub-access-mode {
     font-size: 90%;
-    /* margin-top: .1rem; */
-    /* margin-left: .2rem; */
 }
-
-.pub-title-author-publisher {
-    line-height: 1.4;
-}
-
 
 /* SINGLE PUBLICATIONS PAGE */
 

@@ -194,6 +194,11 @@ body, h1, h2, h3, h4, h5, a {
     margin-right: auto;
 }
 
+.author-in-pub {
+    font-weight: bold;
+    color: var(--gray-dark);
+}
+
 
 /* CONTACT PAGE */
 .contact-gg-map {

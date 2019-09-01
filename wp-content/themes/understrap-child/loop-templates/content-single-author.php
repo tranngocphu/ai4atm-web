@@ -65,6 +65,8 @@ $pubs = $query->posts;
 
 <!-- Show publications of current user -->
 
+<?php if ( $pubs ) : ?>
+
 <h5 class="mt-5 mb-3"><?php echo esc_html( 'Publications:', 'understrap' ) ?></h5>
 
 <?php foreach ( $pubs as $pub ) : 
@@ -146,13 +148,4 @@ $pubs = $query->posts;
 
 <?php endforeach; ?>
 
-
-
-
-
-
-
-
-
-
-
+<?php endif; ?>

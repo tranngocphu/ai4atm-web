@@ -54,7 +54,7 @@ wp_reset_postdata();
 			
 				$separator = ( $x < $count -1 ) ? ' &#183; ' : '';
 				$name = $author->full_name;
-				$link = "/author/" . $author->user_login;
+				$link = get_author_posts_url( $author->ID );
 	
 				if ( $author->roles[0] === 'external_author' ) {										
 					$authors_str[] = '<span class="pub-each-author">' . $name . $separator . '</span>';				
@@ -74,7 +74,6 @@ wp_reset_postdata();
 				<div class="pub-year"><?= substr($pub->year, 0, 4) ?></div>
 			</div>
 			
-			<!-- Title, Author, Publisher : -->
 			<div class="col-10 col-sm-10 col-md-11">
 
 				<div class="row">					

@@ -28,6 +28,7 @@ if ( $author_ids ) {
 	<header class="entry-header">
 
 		<?php the_title( '<h4 class="entry-title">', '</h4>' ); ?>
+		<div class="pub-publisher"><?= get_post()->publisher ?></div>
 
 	</header><!-- .entry-header -->
 

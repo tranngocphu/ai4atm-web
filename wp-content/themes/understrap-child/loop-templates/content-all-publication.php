@@ -47,26 +47,19 @@ wp_reset_postdata();
 				array_push( $authors, $author_query->get_results()[0] );			
 			}
 			
-			$count = sizeof($authors);
-			
+			$count = sizeof( $authors );			
 			$x = 0;
 
-			foreach ($authors as $author) {
+			foreach ( $authors as $author ) {			
 			
-			
-				$separator = ( $x < $count -1 ) ? ' &#183; ' : '';		
-				
+				$separator = ( $x < $count -1 ) ? ' &#183; ' : '';
 				$name = $author->full_name;
 				$link = "/author/" . $author->user_login;
 	
-				if ( $author->roles[0] === 'external_author' ) {
-					
-					$authors_str[] = '<span class="pub-each-author">' . $name . $separator . '</span>';
-				
-				} else {
-	
-					$authors_str[] = '<span class="pub-each-author"><a href="' . $link .'">' . $name . '</a>' . $separator . '</span>';
-	
+				if ( $author->roles[0] === 'external_author' ) {										
+					$authors_str[] = '<span class="pub-each-author">' . $name . $separator . '</span>';				
+				} else {	
+					$authors_str[] = '<span class="pub-each-author"><a href="' . $link .'">' . $name . '</a>' . $separator . '</span>';	
 				}
 			
 				$x += 1;

@@ -104,49 +104,44 @@ $pubs = $query->posts;
     }   
     ?>
 
-    <div class="row pub-item">                 
+    <div class="row pub-item">	
         <!-- Year : -->
-        <div class="col-2 col-sm-2 col-md-1">
+        <div class="col-12 col-sm-2 col-md-2 col-lg-1 col-xl-1">
             <div class="pub-year"><?= substr($pub->year, 0, 4) ?></div>
-        </div>    
+        </div>			
+        <!-- Title, Authors, Publisher -->
+        <div class="col-12 col-sm-6 col-md-7 col-lg-9 col-xl-9 pub-title-author-publisher">
+            <div class="pub-title"><?= $pub->post_title ?></div>
+            <div class="pub-author-list">
+                <?php if ( $authors_str ) foreach ( $authors_str as $author ) echo $author; ?>
+            </div>
+            <div class="pub-publisher"><?= $pub->publisher ?></div>
+        </div>	
         
-        <div class="col-10 col-sm-10 col-md-11">
-
-            <div class="row">					
-                <!-- Title, Authors, Publisher -->
-                <div class="col-12 col-md-9 col-lg-10 col-xl-10 pub-title-author-publisher mb-1">
-                    <div class="pub-title"><?= $pub->post_title ?></div>
-                    <div class="pub-author-list">
-                        <?php if ( $authors_str ) foreach ( $authors_str as $author ) echo $author; ?>
-                    </div>
-                    <div class="pub-publisher"><?= $pub->publisher ?></div>
-                </div>            
-                <!-- Abstract, Download, Edit Links -->
-                <div class="col-12 col-md-3 col-lg-2 col-xl-2">
-                    <div class="row pub-abstract-pdf">
-                        <!-- Abstract link -->
-                        <div class="col-4 col-md-12 mb-1">
-                            <i class="fa fa-info-circle pub-abstract-icon" aria-hidden="true"></i>
-                            <a class="pub-abstract-link" href="<?= $pub_link ?>">Abstract</a>
-                        </div>	
-                        <!-- Download link -->							
-                        <?php if ( $pdf_link ) : ?>
-                        <div class="col-4 col-md-12 mb-1">
-                                <i class="fa fa-download pub-download-icon" aria-hidden="true"></i>
-                                <a class="pub-download-link" href="<?= $pdf_link ?>" target="_blank"><?= $access_mode ?></a>
-                        </div>
-                        <?php endif; ?>								
-                        <!-- Edit link -->							
-                        <?php if ( is_user_logged_in() ) : ?>
-                        <div class="col-4 col-md-12 mb-1">									
-                            <i class="fa fa-edit pub-edit-icon"></i>
-                            <a class="pub-edit-link" href="<?= $edit_link ?>" target="_blank">Edit</a>
-                        </div>				
-                        <?php endif; ?>							
-                    </div>
+        <!-- Abstract, Download, Edit Links -->
+        <div class="col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+            <div class="row pub-abstract-pdf">
+                <!-- Abstract link -->
+                <div class="col-4 col-sm-12 col-md-12 mb-1">
+                    <i class="fa fa-info-circle pub-abstract-icon" aria-hidden="true"></i>
+                    <a class="pub-abstract-link" href="<?= $pub_link ?>">Abstract</a>
+                </div>	
+                <!-- Download link -->							
+                <?php if ( $pdf_link ) : ?>
+                <div class="col-5 col-sm-12 col-md-12 mb-1">
+                        <i class="fa fa-download pub-download-icon" aria-hidden="true"></i>
+                        <a class="pub-download-link" href="<?= $pdf_link ?>" target="_blank"><?= $access_mode ?></a>
+                </div>
+                <?php endif; ?>								
+                <!-- Edit link -->							
+                <?php if ( is_user_logged_in() ) : ?>
+                <div class="col-3 col-sm-12 col-md-12 mb-1">									
+                    <i class="fa fa-edit pub-edit-icon"></i>
+                    <a class="pub-edit-link" href="<?= $edit_link ?>" target="_blank">Edit</a>
                 </div>				
-            </div>			
-        </div>
+                <?php endif; ?>							
+            </div>
+        </div>				
     </div>
 
 <?php endforeach; ?>

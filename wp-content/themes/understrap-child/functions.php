@@ -78,3 +78,17 @@ function external_author_form_update( $form_type ) { ?>
     </script>
     <?php
 }
+
+
+add_filter('wp_nav_menu_items','add_search_box_to_menu', 10, 2);
+function add_search_box_to_menu( $items, $args ) {
+    if( $args->theme_location == 'primary' )
+        return $items . 
+            "<li class='menu-header-search'>
+                <form class='form-inline float-right ml-2' id='searchform' method='get'>
+                    <input class='form-control form-control-sm mr-2 w-60' type='text' name='s' id='s' placeholder='Search'>
+                </form>
+            </li>";
+ 
+    return $items;
+}

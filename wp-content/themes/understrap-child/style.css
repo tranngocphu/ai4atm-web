@@ -48,6 +48,15 @@ body, h1, h2, h3, h4, h5, a {
     color : var(--gray);
 }
 
+.menu-header-search {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.search-icon {
+    color: white;
+}
+
 /* PEOPE PAGE */
 
 .profile-card {

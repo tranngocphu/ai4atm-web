@@ -97,7 +97,7 @@ wp_reset_postdata();
 					</div>
 					<?php endif; ?>								
 					<!-- Edit link -->							
-					<?php if ( is_user_logged_in() && in_array( get_current_user_id(), $author_ids ) ) : ?> 
+					<?php if ( is_user_logged_in() && is_array( $author_ids ) && in_array( get_current_user_id(), $author_ids ) ) : ?> 
 					<div class="col-3 col-sm-12 col-md-12 mb-1">									
 						<i class="fa fa-edit pub-edit-icon"></i>
 						<a class="pub-edit-link" href="<?= $edit_link ?>" target="_blank">Edit</a>

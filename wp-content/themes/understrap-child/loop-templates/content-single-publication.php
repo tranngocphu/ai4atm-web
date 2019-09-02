@@ -8,7 +8,8 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-$author_ids = get_post()->authors;		
+$pub = get_post();
+$author_ids = $pub->authors;
 $authors = [];
 
 if ( $author_ids ) {
@@ -18,17 +19,14 @@ if ( $author_ids ) {
 	}
 }
 
-
-
 ?>
 
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-
 	<header class="entry-header">
 
 		<?php the_title( '<h4 class="entry-title">', '</h4>' ); ?>
-		<div class="pub-publisher"><?= get_post()->publisher ?></div>
+		<div class="pub-publisher"><?= $pub->publisher ?></div>
 
 	</header><!-- .entry-header -->
 
@@ -55,17 +53,17 @@ if ( $author_ids ) {
 		</div>
 
 		<div class="col-12 col-sm-12 col-md-12 col-lg-8">
-			<?php if (  get_post()->abstract ) : ?>			
-			<p><span style="font-weight: bold">Abstract: </span><?= get_post()->abstract ?></p>
+			<?php if (  $pub->abstract ) : ?>			
+			<p><span class="font-weight-bold">Abstract: </span><?= $pub->abstract ?></p>
 			<?php endif; ?>
 
-			<?php if ( get_post()->pdf_article ) : ?>
-			<p><i class="fa fa-download pub-download-icon" aria-hidden="true"></i><a class="ml-2" href="<?= wp_get_attachment_url( get_post()->pdf_article ) ?>" target="_blank">Download PDF </a><span class="pub-access-mode">(<?= get_post()->full_text ?>)</span></p>
+			<?php if ( $pub->pdf_article ) : ?>
+			<p><i class="fa fa-download pub-download-icon" aria-hidden="true"></i><a class="ml-2" href="<?= wp_get_attachment_url( $pub->pdf_article ) ?>" target="_blank">Download PDF </a><span class="pub-access-mode">(<?= $pub->full_text ?>)</span></p>
 			<?php endif; ?>
 
-			<?php if ( get_post()->link ) : ?>
+			<?php if ( $pub->link ) : ?>
 			<p><span style="font-weight: bold">Full text:</span><br />
-			<a class="" href="<?= get_post()->link ?>" target="_blank"><?= get_post()->link ?></a>
+			<a class="" href="<?= $pub->link ?>" target="_blank"><?= $pub->link ?></a>
 			</p>
 			<?php endif; ?>
 		</div>

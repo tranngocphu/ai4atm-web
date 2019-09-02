@@ -86,7 +86,14 @@ function add_search_box_to_menu( $items, $args ) {
         return $items . 
             "<li class='menu-header-search'>
                 <a href='/search/'><i class='fa fa-search d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-lg-2 ml-xl-2 search-icon' aria-hidden='true'></i></a>
-            </li>";
- 
+            </li>"; 
     return $items;
 }
+
+
+function my_custom_login_logo() {
+    echo '<style type="text/css">
+    h1 a {background-image:none !important; margin:0 auto; height: 0px !important;}
+    </style>';
+}
+add_filter( 'login_head', 'my_custom_login_logo' );

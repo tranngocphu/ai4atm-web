@@ -39,7 +39,7 @@ if ( $author_ids ) {
 			
 			<div class="row">
 			<?php if ( $author_ids ) foreach ( $authors as $author ) : ?>
-				<div class="col-6 col-sm-4 col-md-4 col-lg-6">
+				<div class="col-4 col-sm-3 col-md-3 col-lg-4">
 					<div class="single-pub-author-item">			
 						<div class="text-center">
 							<a href="<?php echo '/author/' . $author->user_login ?>">

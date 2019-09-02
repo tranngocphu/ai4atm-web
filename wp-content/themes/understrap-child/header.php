@@ -57,9 +57,13 @@ $container = get_theme_mod( 'understrap_container_type' );
 						the_custom_logo();
 					} ?><!-- end custom logo -->
 
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'understrap' ); ?>">
+				
+				<a href="#"><i class="fa fa-search d-inline d-sm-inline d-md-inline d-lg-none d-xl-none search-icon" aria-hidden="true"></i></a>
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'understrap' ); ?>">						
 					<span class="navbar-toggler-icon"></span>
 				</button>
+				
 
 				<!-- The WordPress Menu goes here -->
 				<?php wp_nav_menu(

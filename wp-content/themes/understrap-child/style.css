@@ -64,6 +64,14 @@ body, h1, h2, h3, h4, h5, a {
     color: white;
 }
 
+.search-icon-mobile {        
+    align-self: right;
+}
+
+#search-mobile {
+    
+}
+
 
 /* HOME PAGE */
 

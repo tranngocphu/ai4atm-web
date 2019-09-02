@@ -85,7 +85,7 @@ function add_search_box_to_menu( $items, $args ) {
     if( $args->theme_location == 'primary' )
         return $items . 
             "<li class='menu-header-search'>
-                <a href='#'><i class='fa fa-search d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-lg-2 ml-xl-2 search-icon' aria-hidden='true'></i></a>
+                <a href='/search/'><i class='fa fa-search d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-lg-2 ml-xl-2 search-icon' aria-hidden='true'></i></a>
             </li>";
  
     return $items;

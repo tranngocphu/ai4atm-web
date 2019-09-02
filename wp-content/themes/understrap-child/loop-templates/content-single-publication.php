@@ -36,11 +36,13 @@ if ( $author_ids ) {
 		<div class="col-12 col-sm-12 col-md-12 col-lg-4">			
 			
 			<div class="row">
-			<?php if ( $author_ids ) foreach ( $authors as $author ) : ?>
+			<?php if ( $author_ids ) foreach ( $authors as $author ) : 				
+				$href = ( $author->roles[0] === 'external_author' ) ? '' : 'href="' . get_author_posts_url( $author->ID ) . '"';				 
+				?>
 				<div class="col-4 col-sm-3 col-md-3 col-lg-4">
 					<div class="single-pub-author-item">			
 						<div class="text-center">
-							<a href="<?=  get_author_posts_url( $author->ID ) ?>">
+							<a <?= $href ?>>
 								<img src="<?= esc_url( get_avatar_url( $author->ID ) ); ?>" alt="profile-image" class="single-pub-profile"/>
 							</a>
 						</div>

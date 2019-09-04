@@ -79,43 +79,46 @@ body, h1, h2, h3, h4, h5, a {
 
 /* HOME PAGE */
 
-.home-content-wrapper {
-    padding: 0;
+.carousel-item {
+    min-height: 350px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-.home-sliders-wrapper, 
-.home-news-wrapper,
-.home-research-wrapper,
-.home-publications-wrapper,
-.home-people-wrapper,
-.home-join-wrapper  {
-    height: 100px;
-    padding: 10px;
+.carousel-item-height {
+    height: calc(100vh - 56px);
 }
 
-.home-sliders-wrapper {
-    background-color: var(--home-blue);
-    height: 300px;
+.carousel-caption {
+    color: var(--first-color);
+    position: absolute;
+    top: 55%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
+
 
 .home-people-wrapper {
-    background-color: #eeeeee;
+
 }
 
 .home-news-wrapper {
-    background-color: var(--home-green);
+
 }
 
 .home-research-wrapper {
-    background-color: var(--first-color);
+
 }
 
 .home-publications-wrapper {
-    background-color: var(--home-green);
+
 }
 
 .home-join-wrapper {
-    background-color: var(--home-blue);
+
 }
 
 .home-section-title {

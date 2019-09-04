@@ -15,19 +15,23 @@ get_header();
 
 ?>
 
-<div class="container-fluid home-content-wrapper">
+<div class="container-fluid px-0">
 
-	<?php get_template_part( 'loop-templates/content', 'front-page-sliders' ); ?>
+	<?php 
+	
+	get_template_part( 'loop-templates/content', 'front-page-sliders' );
 
-	<?php get_template_part( 'loop-templates/content', 'front-page-people' ); ?>
+	// get_template_part( 'loop-templates/content', 'front-page-people' );
 
-	<?php get_template_part( 'loop-templates/content', 'front-page-news' ); ?>
+	// get_template_part( 'loop-templates/content', 'front-page-news' );
 
-	<?php get_template_part( 'loop-templates/content', 'front-page-research' ); ?>
+	// get_template_part( 'loop-templates/content', 'front-page-research' );
 
-	<?php get_template_part( 'loop-templates/content', 'front-page-publications' ); ?>
+	// get_template_part( 'loop-templates/content', 'front-page-publications' );
 
-	<?php get_template_part( 'loop-templates/content', 'front-page-join' ); ?>
+	// get_template_part( 'loop-templates/content', 'front-page-join' ); 
+	
+	?>
 
 </div>
 

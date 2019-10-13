@@ -17,13 +17,13 @@ defined( 'ABSPATH' ) || exit;
 
 		<div class="entry-meta">
 
-			<?php understrap_posted_on(); ?>
+			<?= the_date(); ?>
 
 		</div><!-- .entry-meta -->
 
 	</header><!-- .entry-header -->
 
-	<div class="entry-content">
+	<div class="entry-content mb-5">
 
 		<?php the_content(); ?>
 

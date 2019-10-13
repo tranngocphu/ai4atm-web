@@ -162,3 +162,5 @@ function ai4atm_theme_slider_options() {
     echo "Hello<br>";
     var_dump(get_option("img_1"));
 }
+
+*/

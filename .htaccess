@@ -337,21 +337,11 @@ RewriteRule .* http://127.0.0.1 [L]
 RewriteEngine On
 RewriteCond %{REQUEST_METHOD} POST
 RewriteCond %{REQUEST_URI} ^(.*)?wp-comments-post\.php(.*)$
-RewriteCond %{HTTP_REFERER} !^http(s)?://ai4atm\.local [NC,OR]
+RewriteCond %{HTTP_REFERER} !^http(s)?://ai4atm\.com [NC,OR]
 RewriteCond %{HTTP_USER_AGENT} ^$
 RewriteRule .* http://127.0.0.1 [L]
 </IfModule>
 #AIOWPS_BLOCK_SPAMBOTS_END
-#AIOWPS_PREVENT_IMAGE_HOTLINKS_START
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteCond %{HTTP_REFERER} !^$
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteCond %{REQUEST_FILENAME} \.(gif|jpe?g?|png)$ [NC]
-RewriteCond %{HTTP_REFERER} !^http(s)?://ai4atm\.local [NC]
-RewriteRule \.(gif|jpe?g?|png)$ - [F,NC,L]
-</IfModule>
-#AIOWPS_PREVENT_IMAGE_HOTLINKS_END
 # END All In One WP Security
 
 # BEGIN WordPress
@@ -365,9 +355,3 @@ RewriteRule . /index.php [L]
 </IfModule>
 
 # END WordPress
-
-php_value upload_max_filesize 128M
-php_value post_max_size 128M
-php_value memory_limit 256M
-php_value max_execution_time 300
-php_value max_input_time 300

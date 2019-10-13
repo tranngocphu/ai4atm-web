@@ -63,11 +63,7 @@ if ( $curauth->roles[0] !== "external_author" ) {
             <h3 class=""><?php  echo esc_html( $curauth->full_name ); ?></h3>  
             
             <?php if ( $curauth->show_custom_profile ) : ?>                    
-                <div class="author-custom-profile"><?= $curauth->custom_profile ?></div>                
-        
-            <?php else: ?>
-                <div class="author-default-profile">User default profile is not available at the moment.</div>            
-        
+                <div class="author-custom-profile"><?= $curauth->custom_profile ?></div>       
             <?php endif; ?>    
         </div>  
     </div>

@@ -13,23 +13,39 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 
+
+$sections = array(
+	'sliders',
+	'news',
+	// 'research',
+	'publications',
+	'people',
+	'join',
+	// 'contact'
+);
+
+$odd_class = 'odd-section';
+$even_class = 'even-section';
+
 ?>
 
 <div class="container-fluid px-0">
 
 	<?php 
-	
-	get_template_part( 'loop-templates/content', 'front-page-sliders' );
 
-	// get_template_part( 'loop-templates/content', 'front-page-people' );
+		for ( $x=0; $x<sizeof($sections); $x++ ) {		
+			$class = ( $x % 2 === 0 ) ? $even_class : $odd_class;
+			$template = 'front-page-' . $sections[$x];
+		?>
 
-	// get_template_part( 'loop-templates/content', 'front-page-news' );
+			<div class="section-containter <?= $class ?>">
 
-	// get_template_part( 'loop-templates/content', 'front-page-research' );
+			<?php get_template_part( 'loop-templates/content', $template ); ?>
 
-	// get_template_part( 'loop-templates/content', 'front-page-publications' );
+			</div>
 
-	// get_template_part( 'loop-templates/content', 'front-page-join' ); 
+		<?php
+	}
 	
 	?>
 

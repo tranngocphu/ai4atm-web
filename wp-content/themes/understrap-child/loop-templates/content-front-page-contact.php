@@ -1,6 +1,6 @@
 <?php
 /**
- * Projects to be included in front page template.
+ * Join us section to be included in front page template.
  *
  * @package understrap
  */
@@ -9,14 +9,10 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 
-<div class="home-research-wrapper">
+<div class="home-contact-wrapper">
 
     <div class="container">
 
-        <div class="home-section-title">Research</div>
-
     </div>
-
-    
 
 </div>

@@ -30,7 +30,11 @@
 }
 
 
-/* GLOBAL */
+/************** GLOBAL **************/
+.navbar {
+    z-index: 999 !important;
+    background-color: var(--first-color) !important;
+}
 
 .breadcrumbs-wrapper {
     background-color: #ededed; 
@@ -77,7 +81,10 @@ body, h1, h2, h3, h4, h5, a {
 }
 
 
-/* HOME PAGE */
+/************** HOME PAGE SLIDERS **************/
+#home-slider {
+    /* margin-bottom: 30px; */
+}
 
 .carousel-item {
     min-height: 350px;
@@ -101,33 +108,134 @@ body, h1, h2, h3, h4, h5, a {
 }
 
 
-.home-people-wrapper {
-
+/************** HOME PAGE ALL SECTIONS **************/
+.even-section {
+    background-color: white;
 }
 
-.home-news-wrapper {
-
+.odd-section {
+    background-color: #f8f8f8;
 }
 
-.home-research-wrapper {
-
-}
-
-.home-publications-wrapper {
-
-}
-
+.home-people-wrapper, 
+.home-news-wrapper,
+.home-publications-wrapper,
+.home-research-wrapper,
 .home-join-wrapper {
-
+    padding-top: 20px;
+    padding-bottom: 50px;
 }
 
 .home-section-title {
     text-transform: uppercase;
+    color: #c4c4c4;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+
+/************** HOME PAGE NEWS **************/
+.home-news-wrapper {
+
+}
+
+.home-news-wrapper .card-title {
+    height: 2.5em;
 }
 
 
 
-/* PEOPE PAGE */
+/************** HOME PAGE RESEARCH **************/
+.home-research-wrapper {
+
+}
+
+
+
+/************** HOME PAGE RECENT PUBLICATIONS **************/
+.home-publications-wrapper {
+
+}
+
+.home-publications-wrapper .sub-title {
+    font-size: 150%;
+}
+
+.home-publications-wrapper .pub-year, 
+.home-publications-wrapper .pub-title {
+    font-weight: normal;
+}
+
+
+/************** HOME PAGE PEOPLE **************/
+
+.home-people-wrapper {
+    
+}
+
+.scrolling-wrapper-flexbox {
+    display: flex;
+    /* flex-wrap: wrap; */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    /* max-height: 280px; */
+}
+
+.scrolling-wrapper-flexbox::-webkit-scrollbar {
+    display: none;
+}
+
+.home-people-card {
+    flex: 0 0 auto;
+    border: 0px;
+    background: none;
+    margin-bottom: 15px;
+}
+
+.home-people-card .profile {
+    border-radius: 50%;
+    width: 70px;
+    border: 0px;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/************** HOME PAGE JOIN US **************/
+.home-join-wrapper {
+    background-color: #0288d1; 
+    /* margin-top: -50px; */
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.home-join-text {
+    font-size: 150%;
+    color: #f1f1f1;
+}
+
+
+/************** HOME PAGE CONTACT **************/
+.home-contact-wrapper {
+    
+    /* background-color: var(--home-blue); */
+    height: 350px;
+    background-color: #1c2a48;
+    margin-top: -50px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+
+
+
+
+
+
+/************** ALL PEOPLE PAGE **************/
 
 .profile-card {
     float:left;
@@ -199,7 +307,7 @@ body, h1, h2, h3, h4, h5, a {
 
 
 
-/* SINGLE AUTHOR PAGE */
+/************** SINGLE AUTHOR PAGE **************/
 .author-profile {
     width: 100%;
     max-width: 200px;
@@ -216,7 +324,7 @@ body, h1, h2, h3, h4, h5, a {
 
 
 
-/* PUBLICATIONS PAGE */
+/************** ALL PUBLICATIONS PAGE **************/
 
 .pub-wrapper {    
     width : 100%;      
@@ -237,7 +345,6 @@ body, h1, h2, h3, h4, h5, a {
 
 .pub-year, .pub-title {
     font-weight : bold;
-    color : var(--gray-dark);
 }
 
 .pub-each-author > a {
@@ -254,7 +361,7 @@ body, h1, h2, h3, h4, h5, a {
 
 
 
-/* SINGLE PUBLICATION PAGE */
+/************** SINGLE PUBLICATION PAGE **************/
 
 .single-pub-profile {
     width : 70px;
@@ -268,7 +375,20 @@ body, h1, h2, h3, h4, h5, a {
 
 
 
-/* CONTACT PAGE */
+/************** ALL ACTIVITIES ************/
+
+.entry-title-activity {
+    height: 2.4em;
+    overflow-y: hidden;
+}
+
+/************** JOIN US PAGE **************/
+
+
+
+
+
+/************** CONTACT PAGE **************/
 .contact-gg-map {
     padding-left: auto;
     padding-right: auto;

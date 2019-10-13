@@ -1,8 +1,8 @@
 === Import any XML or CSV File to WordPress ===
 Contributors: soflyy, wpallimport 
 Requires at least: 4.1
-Tested up to: 5.2
-Stable tag: 3.5.1
+Tested up to: 5.2.3
+Stable tag: 3.5.2
 Tags: wordpress csv import, wordpress xml import, xml, csv, datafeed, import, migrate, import csv to wordpress, import xml to wordpress, advanced xml import, advanced csv import, bulk csv import, bulk xml import, bulk data import, xml to custom post type, csv to custom post type, woocommerce csv import, woocommerce xml import, csv import, import csv, xml import, import xml, csv importer
 
 WP All Import is an extremely powerful importer that makes it easy to import any XML or CSV file to WordPress.
@@ -104,6 +104,12 @@ Does it work with special character encoding like Hebrew, Arabic, Chinese, etc?
 4. Manage imports.
 
 == Changelog ==
+
+= 3.5.2 =
+* improvement: match existing images by filename with underscores
+* API: add new action wp_all_import_before_preserve_post_data
+* API: add new filter wp_all_import_specified_delimiters
+* bug fix: attachment author not imported for API image imports
 
 = 3.5.1 =
 * improvement: add support for importing WebP images

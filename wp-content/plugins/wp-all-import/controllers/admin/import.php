@@ -1967,7 +1967,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			if ( ! $this->errors->get_error_codes()) { // no validation errors found	
 
 				// Attributes fields logic
-				$post = apply_filters('pmxi_save_options', $post);					
+				$post = apply_filters('pmxi_save_options', $post, $this->isWizard);
 				
 				if ($this->isWizard) {
 

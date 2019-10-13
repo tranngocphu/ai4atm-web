@@ -134,7 +134,7 @@ class ACUI_Cron{
 				<tr class="form-field form-required">
 					<th scope="row"><label for="update-roles-existing-users"><?php _e( 'Update roles for existing users?', 'import-users-from-csv-with-meta' ); ?></label></th>
 					<td>
-						<input type="checkbox" name="update-roles-existing-users" value="yes" <?php if( $update_roles_existing_users == 'yes' ) echo "checked='checked'"; ?>/>
+						<input type="checkbox" name="update-roles-existing-users" value="yes" <?php if( $update_roles_existing_users ) echo "checked='checked'"; ?>/>
 					</td>
 				</tr>
 
@@ -233,7 +233,7 @@ class ACUI_Cron{
 				<tr class="form-field form-required">
 					<th scope="row"><label for="log"><?php _e( 'Last actions of schedule task', 'import-users-from-csv-with-meta' ); ?></label></th>
 					<td>
-						<pre><?php echo $log; ?></pre>
+						<pre><?php echo strip_tags( $log, '<br><div><p><strong><style><h2><h3><table><tbody><tr><td><th>' ); ?></pre>
 					</td>
 				</tr>
 				

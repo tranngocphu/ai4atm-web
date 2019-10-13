@@ -29,7 +29,7 @@
 		var data = {
 			'action': 'acui_refresh_enable_email_templates',
 			'enable': enable,
-			'security': email_template_attachment_admin.nonce,
+			'security': email_template_attachment_admin.security,
 		};
 
 		$.post( ajaxurl, data, function( response ) {
@@ -44,7 +44,7 @@
 		var data = {
 			'action': 'acui_email_template_selected',
 			'email_template_selected': $( '#email_template_selected' ).val(),
-			'security': email_template_attachment_admin.nonce,
+			'security': email_template_attachment_admin.security,
 		};
 
 		$.post( ajaxurl, data, function( response ) {

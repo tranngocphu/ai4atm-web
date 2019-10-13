@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 function acui_import_users( $file, $form_data, $attach_id = 0, $is_cron = false, $is_frontend = false ){?>
 	<div class="wrap">
-		<h2><?php _e('Importing users','import-users-from-csv-with-meta'); ?></h2>
+		<h2><?php echo apply_filters( 'acui_log_main_title', __('Importing users','import-users-from-csv-with-meta') ); ?></h2>
 		<?php
 			set_time_limit(0);
 			
@@ -79,8 +79,9 @@ function acui_import_users( $file, $form_data, $attach_id = 0, $is_cron = false,
 			}
 
 			// action
-			echo "<h3>" . __('Ready to registers','import-users-from-csv-with-meta') . "</h3>";
-			echo "<p>" . __('First row represents the form of sheet','import-users-from-csv-with-meta') . "</p>";
+			echo apply_filters( "acui_log_header", "<h3>" . __('Ready to registers','import-users-from-csv-with-meta') . "</h3>" );
+			echo apply_filters( "acui_log_header_first_row_explanation", "<p>" . __('First row represents the form of sheet','import-users-from-csv-with-meta') . "</p>" );
+
 			$row = 0;
 			$positions = array();
 			$error_importing = false;
@@ -148,7 +149,21 @@ function acui_import_users( $file, $form_data, $attach_id = 0, $is_cron = false,
 
 					update_option( "acui_columns", $headers_filtered );
 					?>
-					<h3><?php _e( 'Inserting and updating data', 'import-users-from-csv-with-meta' ); ?></h3>
+					<style type="text/css">
+						.wrap{
+							overflow-x:auto!important;
+						}
+
+						.wrap table{
+							min-width:800px!important;
+						}
+
+						.wrap table th,
+						.wrap table td{
+							width:200px!important;
+						}
+					</style>
+					<h3><?php echo apply_filters( 'acui_log_inserting_updating_data_title', __( 'Inserting and updating data', 'import-users-from-csv-with-meta' ) ); ?></h3>
 					<table>
 						<tr><th><?php _e( 'Row', 'import-users-from-csv-with-meta' ); ?></th><?php foreach( $headers as $element ) echo "<th>" . $element . "</th>"; ?></tr>
 					<?php
@@ -194,6 +209,10 @@ function acui_import_users( $file, $form_data, $attach_id = 0, $is_cron = false,
 					}
 					else{
 						$roles_cells = explode( ',', $data[ $role_position ] );
+						
+						if( !is_array( $roles_cells ) )
+							$roles_cells = array( $roles_cells );
+
 						array_walk( $roles_cells, 'trim' );
 						$role = $roles_cells;
 					}
@@ -713,6 +732,7 @@ function acui_options(){
 
 		switch ( $tab ){
       		case 'homepage':
+      			update_option( 'acui_last_roles_used', array_map( 'sanitize_text_field', $_POST['role'] ) );
       			acui_fileupload_process( $_POST, false );
       			return;
       		break;

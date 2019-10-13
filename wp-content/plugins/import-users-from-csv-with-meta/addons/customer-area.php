@@ -40,7 +40,13 @@ function acui_cumg_post_import_single_user( $headers, $row, $user_id ){
 
 	foreach ( $user_groups as $user_group ) {
 		$group = get_page_by_path( $user_group, OBJECT, 'cuar_user_group' );
-		$new_group_ids[] = $group->ID;
+
+		if( is_object( $group ) )
+			$new_group_ids[] = $group->ID;
+		else{
+			echo "$group is not a name of a group in Customer Area<br/>";
+			return;
+		}
 	}
 
 	$object_addon = new CUAR_UserGroupAddOn();

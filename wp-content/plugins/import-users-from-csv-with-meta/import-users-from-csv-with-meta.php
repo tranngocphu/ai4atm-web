@@ -3,7 +3,7 @@
 Plugin Name:	Import users from CSV with meta
 Plugin URI:		https://www.codection.com
 Description:	This plugins allows to import users using CSV files to WP database automatically
-Version:		1.14.3
+Version:		1.14.3.7
 Author:			codection
 Author URI: 	https://codection.com
 License:     	GPL2
@@ -304,10 +304,10 @@ function acui_admin_tabs( $current = 'homepage' ) {
 
 function acui_fileupload_process( $form_data, $is_cron = false, $is_frontend  = false ) {
 	if ( !defined( 'DOING_CRON' ) && ( !isset( $form_data['security'] ) || !wp_verify_nonce( $form_data['security'], 'codection-security' ) ) ){
-			wp_die( __( 'Nonce check failed', 'import-users-from-csv-with-meta' ) ); 
+		wp_die( __( 'Nonce check failed', 'import-users-from-csv-with-meta' ) ); 
 	}
 
-	if( empty( $_FILES['uploadfile']['name'] ) ):
+	if( empty( $_FILES['uploadfile']['name'] ) || ( isset( $form_data['is_frontend'] ) && $form_data['is_frontend'] ) ):
   		$path_to_file = wp_normalize_path( $form_data["path_to_file"] );
   		
 		if( validate_file( $path_to_file ) !== 0 ){
@@ -427,6 +427,7 @@ function acui_manage_cron_process( $form_data ){
 	update_option( "acui_cron_send_mail", isset( $form_data["send-mail-cron"] ) && $form_data["send-mail-cron"] == "yes" );
 	update_option( "acui_cron_send_mail_updated", isset( $form_data["send-mail-updated"] ) && $form_data["send-mail-updated"] == "yes" );
 	update_option( "acui_cron_delete_users", isset( $form_data["cron-delete-users"] ) && $form_data["cron-delete-users"] == "yes" );
+	update_option( "acui_cron_delete_users_assign_posts", sanitize_text_field( $form_data["cron-delete-users-assign-posts"] ) );
 	update_option( "acui_move_file_cron", isset( $form_data["move-file-cron"] ) && $form_data["move-file-cron"] == "yes" );
 	update_option( "acui_cron_path_to_move_auto_rename", isset( $form_data["path_to_move_auto_rename"] ) && $form_data["path_to_move_auto_rename"] == "yes" );
 	update_option( "acui_cron_allow_multiple_accounts", ( isset( $form_data["allow_multiple_accounts"] ) && $form_data["allow_multiple_accounts"] == "yes" ) ? "allowed" : "not_allowed" );
@@ -435,8 +436,6 @@ function acui_manage_cron_process( $form_data ){
 	update_option( "acui_cron_period", sanitize_text_field( $form_data["period"] ) );
 	update_option( "acui_cron_role", sanitize_text_field( $form_data["role"] ) );
 	update_option( "acui_cron_update_roles_existing_users", isset( $form_data["update-roles-existing-users"] ) && $form_data["update-roles-existing-users"] == "yes" );
-	update_option( "acui_cron_delete_users", isset( $form_data["cron-delete-users"] ) && $form_data["cron-delete-users"] == "yes" );
-	update_option( "acui_cron_delete_users_assign_posts", sanitize_text_field( $form_data["cron-delete-users-assign-posts"] ) );
 	update_option( "acui_cron_change_role_not_present", isset( $form_data["cron-change-role-not-present"] ) && $form_data["cron-change-role-not-present"] == "yes" );
 	update_option( "acui_cron_change_role_not_present_role", sanitize_text_field( $form_data["cron-change-role-not-present-role"] ) );
 	?>
@@ -452,7 +451,7 @@ function acui_cron_process(){
 	$form_data = array();
 	$form_data[ "path_to_file" ] = get_option( "acui_cron_path_to_file");
 	$form_data[ "role" ] = get_option( "acui_cron_role");
-	$form_data[ "update_roles_existing_users" ] = get_option( "acui_cron_update_roles_existing_users");
+	$form_data[ "update_roles_existing_users" ] = ( get_option( "acui_cron_update_roles_existing_users" ) ) ? 'yes' : 'no';
 	$form_data[ "empty_cell_action" ] = "leave";
 	$form_data[ "security" ] = wp_create_nonce( "codection-security" );
 

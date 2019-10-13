@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 class ACUI_Homepage{
 	public static function admin_gui(){
+		$last_roles_used = empty( get_option( 'acui_last_roles_used' ) ) ? array( 'subscriber' ) : get_option( 'acui_last_roles_used' );
 		$args_old_csv = array( 'post_type'=> 'attachment', 'post_mime_type' => 'text/csv', 'post_status' => 'inherit', 'posts_per_page' => -1 );
 		$old_csv_files = new WP_Query( $args_old_csv );
 
@@ -73,10 +74,10 @@ class ACUI_Homepage{
 					<th scope="row"><label for="role"><?php _e( 'Default role', 'import-users-from-csv-with-meta' ); ?></label></th>
 					<td>
 					<?php 
-						$list_roles = acui_get_editable_roles(); 
+						$list_roles = acui_get_editable_roles();
 						
 						foreach ($list_roles as $key => $value) {
-							if($key == "subscriber")
+							if( in_array( $key, $last_roles_used ) )
 								echo "<label style='margin-right:5px;'><input name='role[]' type='checkbox' checked='checked' value='$key'/>$value</label>";
 							else
 								echo "<label style='margin-right:5px;'><input name='role[]' type='checkbox' value='$key'/>$value</label>";
@@ -207,23 +208,11 @@ class ACUI_Homepage{
 		    	</a>
 		    </div>
 
-		    <?php if( substr( get_locale(), 0, 2 ) == 'es' ): ?>
-			<div class="sidebar_section" id="iontics">
-				<h3>Tu web en el hosting más rápido</h3>
-				<ul>
-					<li><label>Incluye experto técnico WordPress ilimitado.</label></li>
-				</ul>
-				<a href="https://www.iontics.com/hosting-wordpress/?utm_source=banner&utm_medium=CodectionPlugin&utm_campaign=pluginswp" target="_blank" rel="noopener">
-					<img src="<?php echo esc_url( plugins_url( 'assets/iontics_logo.svg', dirname( __FILE__ ) ) ); ?>">
-				</a>
-			</div>
-			<?php else: ?>
 			<div class="sidebar_section" style="padding:0 !important;border:none !important;background:none !important;">
 				<a href="https://codection.com/how-to-transfer-your-website-to-inmotion-hosting/" target="_blank" rel="noopener">
 					<img src="<?php echo esc_url( plugins_url( 'assets/codection-inmotion.png', dirname( __FILE__ ) ) ); ?>"/>
 				</a>
 			</div>
-			<?php endif; ?>
 			
 			<div class="sidebar_section" id="vote_us">
 				<h3><?php _e( 'Rate Us', 'import-users-from-csv-with-meta'); ?></h3>

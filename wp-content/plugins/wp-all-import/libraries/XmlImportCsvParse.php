@@ -918,26 +918,19 @@ class PMXI_CsvParser
      * @access protected
      * @return boolean
      */
-    protected function parse()
-    {
+    protected function parse() {
         if (!$this->validates()) {            
             return false;
         }                      
 
         $tmpname = wp_unique_filename($this->targetDir, str_replace("csv", "xml", basename($this->_filename)));
-        if ("" == $this->xml_path) 
-            $this->xml_path = $this->targetDir  .'/'. wp_all_import_url_title($tmpname);            
-        
-        $this->toXML(true);        
+        if ("" == $this->xml_path) {
+            $this->xml_path = $this->targetDir  .'/'. wp_all_import_url_title($tmpname);
+        }
 
-        /*$file = new PMXI_Chunk($this->xml_path, array('element' => 'node'));
-
-        if ( empty($file->options['element']) ){
-            $this->toXML(true); // Remove non ASCII symbols and write CDATA
-        }*/
-
+        $ignore_special_characters = apply_filters('wp_all_import_csv_to_xml_remove_non_ascii_characters', true);
+        $this->toXML($ignore_special_characters);
         return true;
-
     }
 
     function toXML( $fixBrokenSymbols = false ){
@@ -1174,7 +1167,9 @@ class PMXI_CsvParser
             'pipe'         => '|',
             'tabulation' => "\t"
         );
-       
+
+        $delimiters = apply_filters('wp_all_import_specified_delimiters', $delimiters);
+
         // specify allowed line endings
         $line_endings = array(
             'rn'         => "\r\n",

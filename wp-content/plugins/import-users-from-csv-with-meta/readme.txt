@@ -3,8 +3,8 @@ Contributors: carazo, hornero
 Donate link: https://codection.com/go/donate-import-users-from-csv-with-meta/
 Tags: csv, import, importer, meta data, meta, user, users, user meta,  editor, profile, custom, fields, delimiter, update, insert
 Requires at least: 3.4
-Tested up to: 5.2.1
-Stable tag: 1.14.3
+Tested up to: 5.2.3
+Stable tag: 1.14.3.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,6 +90,29 @@ Plugin will automatically detect:
 5. Extra profile information (user meta)
 
 == Changelog ==
+
+= 1.14.3.7 =
+*	New filters added to custom message shown in log or regular import
+*	Last roles used are remembered in import, to avoid you have to choose all time different roles
+
+= 1.14.3.6 =
+*	Fixed a problem with a nonce that was bad named
+
+= 1.14.3.5 =
+*	Removed some tags when printing log in cron job
+*	Improved error message with Customer Area Addon
+
+= 1.14.3.4 =
+*	Fixed other problem thanks to @alexgav (https://wordpress.org/support/topic/issue-in-cron-import-tab/)
+
+= 1.14.3.3 =
+*	Fixed some problems thanks to @alexgav (https://wordpress.org/support/topic/issue-in-cron-import-tab/)
+
+= 1.14.3.2 =
+*	Added CSS to fix table mobile view
+
+= 1.14.3.1 =
+*	Problems uploading users from fronted fixed
 
 = 1.14.3 =
 *	Filter added to fix CSV files upload problems

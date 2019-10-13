@@ -11,7 +11,7 @@ if ( ! function_exists('wp_all_import_addon_notifications') ){
 			$parent_theme_name = ($parent_theme) ? $parent_theme->get('Name') : '';							
 
 			$current_themes = array($theme_name, $parent_theme_name);
-			
+
 			$recommended_addons = array();
 			
 			// Reales WP Add-On
@@ -138,7 +138,7 @@ if ( ! function_exists('wp_all_import_addon_notifications') ){
 								<h4><?php _e("Export anything in WordPress to CSV, XML, or Excel.", "wp_all_import_plugin"); ?></h4>
 							</div>		
 						</div>		
-						<a class="button button-primary button-hero wpallimport-large-button wpallimport-wpae-notify-read-more" href="http://www.wpallimport.com/export/" target="_blank"><?php _e('Read More', 'wp_all_import_plugin');?></a>		
+						<a class="button button-primary button-hero wpallimport-large-button wpallimport-wpae-notify-read-more" href="http://www.wpallimport.com/export" target="_blank"><?php _e('Read More', 'wp_all_import_plugin');?></a>
 					</div-->
 					<?php
 				}				

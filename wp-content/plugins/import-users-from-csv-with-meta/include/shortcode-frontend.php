@@ -18,6 +18,7 @@ function acui_frontend() {
 			$form_data[ "path_to_file" ] = get_attached_file( $csv_file_id );
 			$form_data[ "role" ] = get_option( "acui_frontend_role");
 			$form_data[ "empty_cell_action" ] = "leave";
+			$form_data[ "is_frontend" ] = true;
 			$form_data[ "security" ] = wp_create_nonce( "codection-security" );
 
 			acui_fileupload_process( $form_data, false, true );

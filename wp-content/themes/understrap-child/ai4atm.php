@@ -78,6 +78,8 @@ add_filter( 'login_head', 'my_custom_login_logo' );
 //
 // Add top-level "AI4ATM Theme Options" Menu 
 //
+
+/*
 add_action( 'admin_menu', 'ai4atm_theme_menu' );
 
 function ai4atm_theme_menu() {

@@ -30,16 +30,16 @@ wp_reset_postdata();
 
             <?php foreach ( $recent_news as $news ) : ?>
 
-                <div class="col-12 col-md-6 col-lg-6 col-xl-3">
-
-                    <div class="card ml-1 mr-1 mb-4">
-                        <img class="card-img-top" src="<?= get_the_post_thumbnail_url($news->ID) ?>" alt="Card image cap">
-                        <div class="card-body">
-                            <a href="<?= get_permalink($news->ID) ?>"><h5 class="card-title"><?= get_the_title($news->ID) ?></h5></a>
-                            <div class="entry-date"><?= get_the_date('j F Y', $news->ID) ?></div>
+                <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-3 news-item">
+                    <div class="row">
+                        <div class="col-5 col-sm-6 col-md-12 mb-2">
+                            <img class="" src="<?= get_the_post_thumbnail_url($news->ID) ?>">
                         </div>
-                    </div>
-                
+                        <div class="col-7 col-sm-6 col-md-12">
+                            <a href="<?= get_permalink($news->ID) ?>"><span class="news-title"><?= get_the_title($news->ID) ?></span></a>
+                            <div class="news-date"><?= get_the_date('j F Y', $news->ID) ?></div>
+                        </div>                       
+                    </div>                
                 </div>
 
             <?php endforeach; ?>

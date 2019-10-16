@@ -147,8 +147,6 @@ class WPSEO_Option_Titles extends WPSEO_Option {
 		add_action( 'unregistered_post_type', array( $this, 'invalidate_enrich_defaults_cache' ) );
 		add_action( 'registered_taxonomy', array( $this, 'invalidate_enrich_defaults_cache' ) );
 		add_action( 'unregistered_taxonomy', array( $this, 'invalidate_enrich_defaults_cache' ) );
-
-		add_filter( 'admin_title', array( 'Yoast_Input_Validation', 'add_yoast_admin_document_title_errors' ) );
 	}
 
 	/**
@@ -435,7 +433,7 @@ class WPSEO_Option_Titles extends WPSEO_Option {
 							 */
 							add_settings_error(
 								$this->group_name, // Slug title of the setting.
-								$key, // Suffix-id for the error message box.
+								'_' . $key, // Suffix-id for the error message box.
 								/* translators: %s expands to a post type. */
 								sprintf( __( 'Please select a valid taxonomy for post type "%s"', 'wordpress-seo' ), $post_type ), // The error message.
 								'error' // Error type, either 'error' or 'updated'.

@@ -372,7 +372,6 @@ class WPSEO_Admin_Asset_Manager {
 				'name' => 'admin-script',
 				'src'  => 'wp-seo-admin-' . $flat_version,
 				'deps' => array(
-					'lodash',
 					'jquery',
 					'jquery-ui-core',
 					'jquery-ui-progressbar',
@@ -650,6 +649,16 @@ class WPSEO_Admin_Asset_Manager {
 					'wp-element',
 				),
 			),
+			array(
+				'name' => 'courses-overview',
+				'src'  => 'wp-seo-courses-overview-' . $flat_version,
+				'deps' => array(
+					'wp-element',
+					'wp-i18n',
+					self::PREFIX . 'styled-components',
+					self::PREFIX . 'components',
+				),
+			),
 		);
 	}
 
@@ -707,9 +716,6 @@ class WPSEO_Admin_Asset_Manager {
 			array(
 				'name' => 'adminbar',
 				'src'  => 'adminbar-' . $flat_version,
-				'deps' => array(
-					'admin-bar',
-				),
 			),
 			array(
 				'name' => 'primary-category',

@@ -11,6 +11,7 @@
  * @todo This class could use a general description with some explanation on sitemaps. OR.
  */
 class WPSEO_Sitemaps {
+
 	/**
 	 * Sitemap index identifier.
 	 *
@@ -145,11 +146,14 @@ class WPSEO_Sitemaps {
 	 * Check the current request URI, if we can determine it's probably an XML sitemap, kill loading the widgets.
 	 */
 	public function reduce_query_load() {
+
 		if ( ! isset( $_SERVER['REQUEST_URI'] ) ) {
 			return;
 		}
+
 		$request_uri = sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) );
 		$extension   = substr( $request_uri, -4 );
+
 		if ( false !== stripos( $request_uri, 'sitemap' ) && in_array( $extension, array( '.xml', '.xsl' ), true ) ) {
 			remove_all_actions( 'widgets_init' );
 		}
@@ -362,12 +366,10 @@ class WPSEO_Sitemaps {
 				$links = $provider->get_sitemap_links( $type, $entries_per_page, $this->current_page );
 			} catch ( OutOfBoundsException $exception ) {
 				$this->bad_sitemap = true;
-
 				return;
 			}
 
 			$this->sitemap = $this->renderer->get_sitemap( $links, $type, $this->current_page );
-
 			return;
 		}
 
@@ -439,10 +441,17 @@ class WPSEO_Sitemaps {
 	}
 
 	/**
-	 * Spit out the generated sitemap.
+	 * Spit out the generated sitemap and relevant headers and encoding information.
 	 */
 	public function output() {
-		$this->send_headers();
+
+		if ( ! headers_sent() ) {
+			header( $this->http_protocol . ' 200 OK', true, 200 );
+			// Prevent the search engines from indexing the XML Sitemap.
+			header( 'X-Robots-Tag: noindex, follow', true );
+			header( 'Content-Type: text/xml; charset=' . esc_attr( $this->renderer->get_output_charset() ) );
+		}
+
 		echo $this->renderer->get_output( $this->sitemap, $this->transient );
 	}
 
@@ -613,36 +622,5 @@ class WPSEO_Sitemaps {
 		}
 
 		return $post_statuses;
-	}
-
-	/**
-	 * Sends all the required HTTP Headers.
-	 */
-	private function send_headers() {
-		if ( headers_sent() ) {
-			return;
-		}
-
-		$headers = array(
-			$this->http_protocol . ' 200 OK'                                                       => 200,
-			// Prevent the search engines from indexing the XML Sitemap.
-			'X-Robots-Tag: noindex, follow'                                                        => '',
-			'Content-Type: text/xml; charset=' . esc_attr( $this->renderer->get_output_charset() ) => '',
-		);
-
-		/**
-		 * Filter the HTTP headers we send before an XML sitemap.
-		 *
-		 * @param array  $headers The HTTP headers we're going to send out.
-		 */
-		$headers = apply_filters( 'wpseo_sitemap_http_headers', $headers );
-
-		foreach ( $headers as $header => $status ) {
-			if ( is_numeric( $status ) ) {
-				header( $header, true, $status );
-				continue;
-			}
-			header( $header, true );
-		}
 	}
 }

@@ -25,12 +25,12 @@ class Indexable_Post_Watcher implements Integration {
 	}
 
 	/**
-	 * @var \Yoast\WP\Free\Repositories\Indexable_Repository
+	 * @var Indexable_Repository
 	 */
 	protected $repository;
 
 	/**
-	 * @var \Yoast\WP\Free\Builders\Indexable_Post_Builder
+	 * @var Indexable_Post_Builder
 	 */
 	protected $builder;
 

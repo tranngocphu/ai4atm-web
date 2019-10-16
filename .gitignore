@@ -9,3 +9,4 @@ wp-content/plugins/all-in-one-wp-migration/storage/error.log
 ai4atm/wpallimport/logs/*
 ai4atm/wpallimport/uploads/*
 ai4atm/wpallimport/files/*
+wp-content/plugins/wordpress-seo__/*

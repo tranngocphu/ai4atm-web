@@ -20,27 +20,26 @@ use YoastSEO_Vendor\Task_Db_Migrate;
 class Ruckusing_Framework {
 
 	/**
-	 * @var \wpdb
+	 * @var wpdb
 	 */
 	protected $wpdb;
 
 	/**
-	 * @var \Yoast\WP\Free\Config\Dependency_Management
+	 * @var Dependency_Management
 	 */
 	protected $dependency_management;
 
 	/**
-	 * @var \Yoast\WP\Free\Loggers\Migration_Logger
+	 * @var Migration_Logger
 	 */
 	protected $migration_logger;
 
 	/**
 	 * Ruckusing_Framework constructor.
 	 *
-	 * @param \wpdb                                       $wpdb                  The wpdb instance.
-	 * @param \Yoast\WP\Free\Config\Dependency_Management $dependency_management The dependency management checker.
-	 * @param \Yoast\WP\Free\Loggers\Migration_Logger     $migration_logger      The migration logger, extends the
-	 *                                                                           Ruckusing logger.
+	 * @param wpdb                  $wpdb                  The wpdb instance.
+	 * @param Dependency_Management $dependency_management The dependency management checker.
+	 * @param Migration_Logger      $migration_logger      The migration logger, extends the Ruckusing logger.
 	 */
 	public function __construct( wpdb $wpdb, Dependency_Management $dependency_management, Migration_Logger $migration_logger ) {
 		$this->wpdb                  = $wpdb;
@@ -54,7 +53,7 @@ class Ruckusing_Framework {
 	 * @param string $migrations_table_name The migrations table name.
 	 * @param string $migrations_directory  The migrations directory.
 	 *
-	 * @return \YoastSEO_Vendor\Ruckusing_FrameworkRunner The framework runner.
+	 * @return Ruckusing_FrameworkRunner The framework runner.
 	 */
 	public function get_framework_runner( $migrations_table_name, $migrations_directory ) {
 		$this->maybe_set_constant();
@@ -79,7 +78,7 @@ class Ruckusing_Framework {
 	 * @param string                                        $migrations_table_name The migrations table name.
 	 * @param string                                        $migrations_directory  The migrations directory.
 	 *
-	 * @return \YoastSEO_Vendor\Ruckusing_Task_Manager The task manager.
+	 * @return Ruckusing_Task_Manager The task manager.
 	 * @throws \YoastSEO_Vendor\Ruckusing_Exception If any of the arguments are invalid.
 	 */
 	public function get_framework_task_manager( $adapter, $migrations_table_name, $migrations_directory ) {
@@ -128,7 +127,7 @@ class Ruckusing_Framework {
 	 */
 	public function maybe_set_constant() {
 		$constant_name  = $this->dependency_management->prefixed_available() ? \YOAST_VENDOR_NS_PREFIX . '\RUCKUSING_BASE' : 'RUCKUSING_BASE';
-		$constant_value = \WPSEO_PATH . 'migrations' . \DIRECTORY_SEPARATOR . 'ruckusing';
+		$constant_value = \WPSEO_PATH . 'migrations' . DIRECTORY_SEPARATOR . 'ruckusing';
 
 		if ( \defined( $constant_name ) ) {
 			return \constant( $constant_name ) === $constant_value;

@@ -30,7 +30,7 @@ $wpseo_contributors_phrase = sprintf(
 
 		<?php echo $notifier->notify(); ?>
 
-		<div class="yoast-container yoast-container__error">
+		<div class="yoast-container yoast-container__alert">
 			<?php require WPSEO_PATH . 'admin/views/partial-alerts-errors.php'; ?>
 		</div>
 

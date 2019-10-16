@@ -7,6 +7,7 @@
 
 namespace Yoast\WP\Free\Database;
 
+use YoastSEO_Vendor\Psr\Log\LoggerInterface;
 use Yoast\WP\Free\Conditionals\No_Conditionals;
 use Yoast\WP\Free\Loggers\Logger;
 use Yoast\WP\Free\WordPress\Initializer;
@@ -20,7 +21,7 @@ class Database_Setup implements Initializer {
 	use No_Conditionals;
 
 	/**
-	 * @var \YoastSEO_Vendor\Psr\Log\LoggerInterface
+	 * @var LoggerInterface
 	 */
 	protected $logger;
 

@@ -67,9 +67,6 @@ $generated_i18n_strings = array(
 	// Reference: node_modules/@yoast/analysis-report/ContentAnalysis.js:97
 	__( 'Problems', 'wordpress-seo' ),
 
-	// Reference: node_modules/@yoast/components/Alert.js:127
-	__( 'Dismiss this alert', 'wordpress-seo' ),
-
 	// Reference: node_modules/@yoast/components/ErrorBoundary.js:51
 	__( 'Something went wrong. Please reload the page.', 'wordpress-seo' ),
 
@@ -113,10 +110,10 @@ $generated_i18n_strings = array(
 	// Reference: node_modules/@yoast/components/WordOccurrences.js:57
 	__( '%d occurrences', 'wordpress-seo' ),
 
-	// Reference: node_modules/yoast-components/composites/LinkSuggestions/LinkSuggestion.js:49
+	// Reference: node_modules/yoast-components/composites/LinkSuggestions/LinkSuggestion.js:48
 	__( 'Copy link', 'wordpress-seo' ),
 
-	// Reference: node_modules/yoast-components/composites/LinkSuggestions/LinkSuggestion.js:52
+	// Reference: node_modules/yoast-components/composites/LinkSuggestions/LinkSuggestion.js:51
 	__( 'Copy link to suggested article: %s', 'wordpress-seo' ),
 
 	// Reference: node_modules/yoast-components/composites/LinkSuggestions/LinkSuggestions.js:129
@@ -220,16 +217,16 @@ $generated_i18n_strings = array(
 	// Reference: node_modules/@yoast/search-metadata-previews/snippet-preview/FixedWidthContainer.js:132
 	__( 'Scroll to see the preview content.', 'wordpress-seo' ),
 
-	// Reference: node_modules/@yoast/search-metadata-previews/snippet-preview/SnippetPreview.js:470
+	// Reference: node_modules/@yoast/search-metadata-previews/snippet-preview/SnippetPreview.js:453
 	__( 'Please provide a meta description by editing the snippet below. If you don’t, Google will try to find a relevant part of your post to show in the search results.', 'wordpress-seo' ),
 
-	// Reference: node_modules/@yoast/search-metadata-previews/snippet-preview/SnippetPreview.js:759
+	// Reference: node_modules/@yoast/search-metadata-previews/snippet-preview/SnippetPreview.js:743
 	__( 'SEO title preview', 'wordpress-seo' ),
 
-	// Reference: node_modules/@yoast/search-metadata-previews/snippet-preview/SnippetPreview.js:774
+	// Reference: node_modules/@yoast/search-metadata-previews/snippet-preview/SnippetPreview.js:758
 	__( 'Url preview', 'wordpress-seo' ),
 
-	// Reference: node_modules/@yoast/search-metadata-previews/snippet-preview/SnippetPreview.js:782
+	// Reference: node_modules/@yoast/search-metadata-previews/snippet-preview/SnippetPreview.js:766
 	__( 'Meta description preview', 'wordpress-seo' ),
 
 	// Reference: js/src/components/ConnectGoogleSearchConsole.js:367

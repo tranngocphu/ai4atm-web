@@ -54,20 +54,19 @@ wp_reset_postdata();
       }
 
       <?php echo '.carousel-caption-' . $slider->order ;?>  {
-        /* position: absolute; */
-        top: <?= $slider->vertical_text_position ?>px;
+        top: calc(55vh - 80px + 2vw);
       }
 
       <?php echo '.primary-caption-' . $slider->order ;?> {
         color: <?= $slider->text_color ?>;
-        font-size: <?= $slider->primary_text_size ?>pt;
+        font-size: calc(2vw + 16px);
         margin-bottom: 0;
         padding-top: 30px;
       }
 
       <?php echo '.secondary-caption-' . $slider->order ;?> {
         color: <?= $slider->text_color ?>;
-        font-size: <?= $slider->secondary_text_size ?>pt;
+        font-size: calc(1vw + 16px);
         margin-top: 0;
         margin-bottom: 0;
         padding-top: 30px;

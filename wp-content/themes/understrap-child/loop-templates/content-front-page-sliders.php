@@ -59,14 +59,14 @@ wp_reset_postdata();
 
       <?php echo '.primary-caption-' . $slider->order ;?> {
         color: <?= $slider->text_color ?>;
-        font-size: calc(2vw + 16px);
+        font-size: calc(1vw + 1vh + 12px);
         margin-bottom: 0;
         padding-top: 30px;
       }
 
       <?php echo '.secondary-caption-' . $slider->order ;?> {
         color: <?= $slider->text_color ?>;
-        font-size: calc(1vw + 16px);
+        font-size: calc(1vw + 1vh + 6px);
         margin-top: 0;
         margin-bottom: 0;
         padding-top: 30px;

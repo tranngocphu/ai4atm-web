@@ -34,9 +34,73 @@ wp_reset_postdata();
     <?php foreach ( $sliders as $slider ) : 
         $active = ( $slider->order == 1 ) ? 'active' : '';       
     ?>      
+    
+    <style>
+      <?php echo '.button-wrapper-' . $slider->order; ?> {
+        margin-top: 0px;
+        padding-top: 30px;
+        padding-bottom: 40px;
+      }
+
+      <?php echo '.btn-custom-' . $slider->order; ?> {
+        border-color:  <?= $slider->text_color ?>;
+        color:  <?= $slider->text_color ?>; 
+      }
+
+      <?php echo '.btn-custom-' . $slider->order . ':active,'; ?>
+      <?php echo '.btn-custom-' . $slider->order . ':hover'; ?> {
+        background-color: <?= $slider->text_color ?>;
+        border-color: <?= $slider->text_color ?>;
+      }
+
+      <?php echo '.carousel-caption-' . $slider->order ;?>  {
+        /* position: absolute; */
+        top: <?= $slider->vertical_text_position ?>px;
+      }
+
+      <?php echo '.primary-caption-' . $slider->order ;?> {
+        color: <?= $slider->text_color ?>;
+        font-size: <?= $slider->primary_text_size ?>pt;
+        margin-bottom: 0;
+        padding-top: 30px;
+      }
+
+      <?php echo '.secondary-caption-' . $slider->order ;?> {
+        color: <?= $slider->text_color ?>;
+        font-size: <?= $slider->secondary_text_size ?>pt;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 30px;
+        
+      }
+
+      <?php if ($slider->text_shading) : ?>
+      <?php echo '.primary-caption-' . $slider->order . ','; ?>
+      <?php echo '.secondary-caption-' . $slider->order . ','; ?>
+      <?php echo '.button-wrapper-' . $slider->order; ?> {
+        background-color: rgba(255, 255, 255, 0.6);
+      }
+      <?php endif; ?>
+
+    </style>
+    
     <div class="carousel-item carousel-item-height <?= $active ?>" style="background-image: url('<?= wp_get_attachment_url( $slider->image ) ?>')">
-      <div class="carousel-caption">
-        <div class="display-4" style="color: <?= $slider->text_color ?>"><?= $slider->primary_caption ?></div>
+      <div class="carousel-caption carousel-caption-<?=  $slider->order ?>">
+        <div class="display-4 primary-caption-<?= $slider->order ?>">
+          <?= $slider->primary_caption ?>
+        </div>  
+
+        <div class="display-4 secondary-caption-<?= $slider->order ?>">
+          <?= $slider->secondary_caption ?>
+        </div> 
+        
+        <?php if ($slider->button) : 
+          $new_tab = ($slider->new_tab == true) ? 'target="_blank"' : '';        
+        ?>
+        <div class="button-wrapper-<?= $slider->order ?>">
+          <a class="btn btn-lg btn-outline-secondary btn-custom-<?= $slider->order ?>" href="<?= $slider->button_link ?>"  <?= $new_tab ?> role="button"><?= $slider->button_label ?> </a>
+        </div>
+        <?php endif; ?>
       </div>
     </div>
     <?php endforeach; ?>

@@ -183,7 +183,7 @@ class A_Image_Options_Form extends Mixin
                         break;
                     case 'galSortDir':
                         $value = esc_html($value);
-                        if (!in_array(strtoupper($value), array('ASC', 'DSC'))) {
+                        if (!in_array(strtoupper($value), array('ASC', 'DESC'))) {
                             $value = 'ASC';
                         }
                         break;

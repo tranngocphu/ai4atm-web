@@ -29,7 +29,7 @@ msgid "https://www.imagely.com/wordpress-gallery-plugin/nextgen-gallery/"
 msgstr ""
 
 #. Description of the plugin
-msgid "The most popular gallery plugin for WordPress and one of the most popular plugins of all time with over 26 million downloads."
+msgid "The most popular gallery plugin for WordPress and one of the most popular plugins of all time with over 27 million downloads."
 msgstr ""
 
 #. Author of the plugin

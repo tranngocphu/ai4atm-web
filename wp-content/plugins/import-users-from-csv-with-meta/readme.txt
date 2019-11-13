@@ -3,8 +3,8 @@ Contributors: carazo, hornero
 Donate link: https://codection.com/go/donate-import-users-from-csv-with-meta/
 Tags: csv, import, importer, meta data, meta, user, users, user meta,  editor, profile, custom, fields, delimiter, update, insert
 Requires at least: 3.4
-Tested up to: 5.2.3
-Stable tag: 1.14.3.7
+Tested up to: 5.3
+Stable tag: 1.14.3.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,6 +90,13 @@ Plugin will automatically detect:
 5. Extra profile information (user meta)
 
 == Changelog ==
+
+= 1.14.3.9 =
+*	Included compatibility with WP User Avatar to import avatar images while the import is being executed, thanks to the support of cshaffstall.com
+
+= 1.14.3.8 =
+*	user_login and show_admin_bar_front are included as WordPress core fields to avoid showing it as custom meta_keys thanks to 
+Michael Finkenberger
 
 = 1.14.3.7 =
 *	New filters added to custom message shown in log or regular import

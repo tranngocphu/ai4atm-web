@@ -3,7 +3,7 @@
 Plugin Name:	Import users from CSV with meta
 Plugin URI:		https://www.codection.com
 Description:	This plugins allows to import users using CSV files to WP database automatically
-Version:		1.14.3.7
+Version:		1.14.3.9
 Author:			codection
 Author URI: 	https://codection.com
 License:     	GPL2
@@ -11,9 +11,10 @@ License URI: 	https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: import-users-from-csv-with-meta
 Domain Path: /languages
 */
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) 
+	exit;
 
-$wp_users_fields = array( "id", "user_nicename", "user_url", "display_name", "nickname", "first_name", "last_name", "description", "jabber", "aim", "yim", "user_registered", "password", "user_pass", "locale" );
+$wp_users_fields = array( "id", "user_nicename", "user_url", "display_name", "nickname", "first_name", "last_name", "description", "jabber", "aim", "yim", "user_registered", "password", "user_pass", "locale", "show_admin_bar_front", "user_login" );
 $wp_min_fields = array("Username", "Email");
 $acui_fields = array( "bp_group", "bp_group_role", "role" );
 $acui_restricted_fields = array_merge( $wp_users_fields, $wp_min_fields, $acui_fields );

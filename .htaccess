@@ -355,3 +355,9 @@ RewriteRule . /index.php [L]
 </IfModule>
 
 # END WordPress
+
+# Try to disable Mod_Security
+<IfModule mod_security.c>
+   SecFilterEngine Off
+   SecFilterScanPOST Off
+</IfModule>

@@ -32,14 +32,45 @@ wp_reset_postdata();
   </ol>
   <div class="carousel-inner" role="listbox">
     <?php foreach ( $sliders as $slider ) : 
-        $active = ( $slider->order == 1 ) ? 'active' : '';       
+        $active = ( $slider->order == 1 ) ? 'active' : '';
+        if ( $slider->source == 'image' ) {
+          $primary_caption = $slider->primary_caption;          
+          $image_url = wp_get_attachment_url($slider->image);
+          $show_button = $slider->button;
+          $button_link = $slider->button_link;
+          $new_tab = ($slider->new_tab == true) ? 'target="_blank"' : '';  
+        } else {
+          $primary_caption = get_the_title($slider->post);
+          $image_url = get_the_post_thumbnail_url($slider->post);
+          $show_button = true;   
+          $button_link = get_permalink($slider->post);
+          $new_tab = '';
+
+        }
+        $secondary_caption = $slider->secondary_caption;
+        $button_label = 'Learn more';
     ?>      
     
+    <!-- setting CSS style for each slider -->
     <style>
+
+      <?php echo '.carousel-caption-' . $slider->order ;?>  {
+        top: calc(55vh - 80px + 2vw);
+      }
+
+      <?php echo '.primary-caption-' . $slider->order ;?> {
+        color: <?= $slider->text_color ?>;
+        font-size: calc(1vw + 1vh + 12px);
+      }
+
+      <?php echo '.secondary-caption-' . $slider->order ;?> {
+        color: <?= $slider->text_color ?>;
+        font-size: calc(1vw + 1vh + 6px);
+        padding-top: 30px;        
+      }
+
       <?php echo '.button-wrapper-' . $slider->order; ?> {
-        margin-top: 0px;
         padding-top: 30px;
-        padding-bottom: 40px;
       }
 
       <?php echo '.btn-custom-' . $slider->order; ?> {
@@ -53,53 +84,46 @@ wp_reset_postdata();
         border-color: <?= $slider->text_color ?>;
       }
 
-      <?php echo '.carousel-caption-' . $slider->order ;?>  {
-        top: calc(55vh - 80px + 2vw);
-      }
-
-      <?php echo '.primary-caption-' . $slider->order ;?> {
-        color: <?= $slider->text_color ?>;
-        font-size: calc(1vw + 1vh + 12px);
-        margin-bottom: 0;
-        padding-top: 30px;
-      }
-
-      <?php echo '.secondary-caption-' . $slider->order ;?> {
-        color: <?= $slider->text_color ?>;
-        font-size: calc(1vw + 1vh + 6px);
-        margin-top: 0;
-        margin-bottom: 0;
-        padding-top: 30px;
-        
-      }
-
       <?php if ($slider->text_shading) : ?>
-      <?php echo '.primary-caption-' . $slider->order . ','; ?>
-      <?php echo '.secondary-caption-' . $slider->order . ','; ?>
-      <?php echo '.button-wrapper-' . $slider->order; ?> {
-        background-color: rgba(255, 255, 255, 0.6);
-      }
+        <?php echo '.caption-wrapper-' . $slider->order ;?> {
+          background-color: rgba(255, 255, 255, 0.6);
+          margin-top: 0;
+          margin-bottom: 0;
+          padding-top: 30px;
+          padding-bottom: 35px;
+          border-radius: 2px;
+        }
       <?php endif; ?>
 
     </style>
+    <!-- end CSS styling -->
     
-    <div class="carousel-item carousel-item-height <?= $active ?>" style="background-image: url('<?= wp_get_attachment_url( $slider->image ) ?>')">
+    <div class="carousel-item carousel-item-height <?= $active ?>" style="background-image: url('<?= $image_url ?>')">
       <div class="carousel-caption carousel-caption-<?=  $slider->order ?>">
-        <div class="display-4 primary-caption-<?= $slider->order ?>">
-          <?= $slider->primary_caption ?>
-        </div>  
-
-        <div class="display-4 secondary-caption-<?= $slider->order ?>">
-          <?= $slider->secondary_caption ?>
-        </div> 
         
-        <?php if ($slider->button) : 
-          $new_tab = ($slider->new_tab == true) ? 'target="_blank"' : '';        
-        ?>
-        <div class="button-wrapper-<?= $slider->order ?>">
-          <a class="btn btn-lg btn-outline-secondary btn-custom-<?= $slider->order ?>" href="<?= $slider->button_link ?>"  <?= $new_tab ?> role="button"><?= $slider->button_label ?> </a>
+        <div class="caption-wrapper-<?=  $slider->order ?>">
+
+          <div class="display-4 primary-caption-<?= $slider->order ?>">
+            <?= $primary_caption ?>
+          </div>  
+
+          <?php if ( $secondary_caption ) : ?>
+          <div class="display-4 secondary-caption-<?= $slider->order ?>">
+            <?= $slider->secondary_caption ?>
+          </div> 
+          <?php endif; ?>
+          
+          <!-- If button is selected -->
+          <?php if ( $show_button ) : ?>
+          <div class="button-wrapper-<?= $slider->order ?>">
+            <a class="btn btn-lg btn-outline-secondary btn-custom-<?= $slider->order ?>" href="<?= $button_link  ?>"  <?= $new_tab ?> role="button">
+              <?= $button_label ?> 
+            </a>
+          </div>
+          <?php endif; ?>
+        
         </div>
-        <?php endif; ?>
+
       </div>
     </div>
     <?php endforeach; ?>

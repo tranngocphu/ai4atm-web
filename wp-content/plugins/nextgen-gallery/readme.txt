@@ -2,8 +2,8 @@
 Contributors: photocrati, imagely
 Tags: wordpress gallery plugin, gallery, nextgen, nextgen gallery, photo gallery, image gallery, photography, slideshow, images, photo, photo album, watermark
 Requires at least: 4.0.0
-Stable tag: 3.2.19
-Tested up to: 5.2.4
+Stable tag: 3.2.21
+Tested up to: 5.3.0
 License: GPLv2
 
 The most popular WordPress gallery plugin and one of the most popular plugins of all time with over 27 million downloads.
@@ -178,6 +178,9 @@ For more information, feel free to visit the official website for the NextGEN Ga
 
 
 == Changelog ==
+
+= V3.2.21 - 11.20.2019 =
+* Changed: Small branding and color update
 
 = V3.2.19 - 10.30.2019 =
 * Fixed:   Conflict with Imagify and the Imagely Lightroom plugin

@@ -327,9 +327,9 @@ table {
     position: relative;
     top: -187px;
     left: 608px;
-    background: black;
+    background: #9ebc1b;
     color: #fff;
-    border-bottom: 5px solid #9ebc1b;
+    /*border-bottom: 5px solid #9ebc1b;*/
     font-family: Lato,sans-serif;
     letter-spacing: .5px;
     box-sizing: border-box;
@@ -338,16 +338,37 @@ table {
     margin-bottom: -170px;
 }
 
+#displayed_tab .ngg_igw_promo p:nth-of-type(1) {
+    margin-top: 10px;
+}
+
+#displayed_tab .ngg_igw_promo p:nth-of-type(2) {
+    margin: 20px 0;
+}
+
 #displayed_tab .ngg_igw_promo a {
     text-decoration: none;
     font-weight: 600;
+    background: black;
+    color: #fff;
+    padding: 10px 16px;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+#displayed_tab .ngg_igw_promo a:after {
+	content: "\f345";
+    font: normal 12px dashicons;
+    color: white !important;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    left: 6px;
 }
 
 #displayed_tab .ngg_igw_coupon {
     font-size: 12px;
     margin-top: 10px;
-    margin-top: 47px;
-    color: #7298b1;
 }
 
 

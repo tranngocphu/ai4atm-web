@@ -1,6 +1,9 @@
 NextGEN Gallery
 by Imagely
 
+= V3.2.21 - 11.20.2019 =
+* Changed: Small branding and color update
+
 = V3.2.19 - 10.30.2019 =
 * Fixed:   Conflict with Imagify and the Imagely Lightroom plugin
 * Fixed:   Ability to update image metadata from the Imagely Lightroom plugin

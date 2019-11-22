@@ -42,10 +42,3 @@ $contact = $contact->posts[0];
 	</div>
 
 </div>
-
-<div class="row">
-	<div class="col-12 col-md-8 col-lg-6">
-		<h5 class="mt-3">Contact form</h5>
-		<?php wpforms_display( 147, "", "" ); ?>
-	</div>
-</div>

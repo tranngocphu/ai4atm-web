@@ -10,9 +10,19 @@ defined( 'ABSPATH' ) || exit;
 
 $user_query = new WP_User_Query( array( 
     'role__in' => array('Administrator','Editor','Author'),
-    'meta_key' => 'date_joined',
-    'orderby' => 'meta_value',
-    'order' => 'ASC'
+    'meta_query' => array(
+        'relation' => 'AND',
+        'group_sort' => array(
+            'key' => 'group'
+        ),
+        'date_sort' => array(
+            'key' => 'date_joined'
+        )
+    ),
+    'orderby' => array( 
+        'group_sort' => 'ASC',
+        'date_sort' => 'ASC',
+    ),
 ));
 
 $authors = $user_query->get_results();

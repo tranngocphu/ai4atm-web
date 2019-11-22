@@ -10,11 +10,11 @@ defined( 'ABSPATH' ) || exit;
 
 $group = array(
 	"all" => "All",
-	"advisors" => "Advisors",
-	"researchers" => "Researchers",
-	"students" => "PhD Students",
-	"visitingscholars" => "Visiting Scholars",
-	"alumni" => "Alumni"
+	"advisors" => 0,
+	"researchers" => 1,
+	"students" => 2,
+	"visitingscholars" => 3,
+	"alumni" => 4
 )
 ?>
 
@@ -42,14 +42,14 @@ function select ( id ) {
 
 		<div class="row">
 		<div class="col-6 col-sm-6 col-md-12 mb-2">
-			<button id="all"         type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["all"] ?></button>
-			<button id="advisors"    type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["advisors"] ?></button>
-			<button id="researchers" type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["researchers"] ?></button>
+			<button id="all"         type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">All</button>
+			<button id="advisors"    type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">Advisors</button>
+			<button id="researchers" type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">Researchers</button>
 		</div>
 		<div class="col-6 col-sm-6 col-md-12">
-			<button id="students"         type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["students"] ?></button>
-			<button id="visitingscholars" type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["visitingscholars"] ?></button>
-			<button id="alumni"           type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);"><?= $group["alumni"] ?></button>
+			<button id="students"         type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">PhD Students</button>
+			<button id="visitingscholars" type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">Visiting Scholars</button>
+			<button id="alumni"           type="button" class="btn btn-outline-secondary btn-block btn-staff" onclick="show_staff(this.id);">Alumni</button>
 		</div>
 		</div>
 
@@ -91,9 +91,19 @@ function select ( id ) {
 
 		$user_query = new WP_User_Query( array( 
 			'role__in' => array('Administrator','Editor','Author'),
-			'meta_key' => 'date_joined',
-			'orderby' => 'meta_value',
-			'order' => 'ASC'
+			'meta_query' => array(
+				'relation' => 'AND',
+				'group_sort' => array(
+					'key' => 'group'
+				),
+				'date_sort' => array(
+					'key' => 'date_joined'
+				)
+			),
+			'orderby' => array( 
+				'group_sort' => 'ASC',
+				'date_sort' => 'ASC',
+			),
 		));
 
 		?>

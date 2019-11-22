@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 
 $args = array (
     'post_type'      => 'post',
-    'category_name'  => 'activity',	
+    'category_name'  => 'activities',	
     'nopaging'  => false,
     'posts_per_page' => 4,
 );
@@ -46,7 +46,7 @@ wp_reset_postdata();
 
             <div class="col-12">
                 <div class="text-center mt-3">
-                    <a class="btn btn-lg btn-outline-primary" href="/category/activity/" role="button">See all activities</a>
+                    <a class="btn btn-lg btn-outline-primary" href="/category/activities/" role="button">See all activities</a>
                 </div>
             </div>
 

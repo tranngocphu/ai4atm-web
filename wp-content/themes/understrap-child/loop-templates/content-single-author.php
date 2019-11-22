@@ -60,18 +60,25 @@ if ( $curauth->roles[0] !== "external_author" ) {
         <!-- Right column: Details bio and publications -->
         <div class="col-8">
         
-            <h3 class=""><?php  echo esc_html( $curauth->full_name ); ?></h3>  
+            <h3><?php  echo esc_html( $curauth->full_name ); ?></h3> 
+            <h5><?php  echo esc_html( $curauth->position ); ?></h5> 
             
             <?php if ( $curauth->show_custom_profile ) : ?>                    
                 <div class="author-custom-profile"><?= $curauth->custom_profile ?></div>       
-            <?php endif; ?>    
+            <?php endif; ?> 
+
+            <?php if ( is_user_logged_in() & current_user_can('administrator') ): ?>                
+                <a href="<?= get_edit_user_link($curauth->ID) ?>">Edit <?= $curauth->full_name ?>'s profile</a>    
+            <?php elseif ( is_user_logged_in() & get_current_user_id() == $curauth->ID ) : ?>
+                <a href="<?= get_edit_user_link() ?>">Edit my profile</a>              
+            <?php endif; ?>
         </div>  
     </div>
 
     <!-- Show publications of current user -->
     <?php if ( $pubs ) : ?>
 
-    <h5 class="mt-5 mb-3"><?php echo esc_html( 'Publications:', 'understrap' ) ?></h5>
+    <h5 class="mt-5 mb-3"><?php echo esc_html( 'Selected publications:', 'understrap' ) ?></h5>
 
     <?php foreach ( $pubs as $pub ) : 
         

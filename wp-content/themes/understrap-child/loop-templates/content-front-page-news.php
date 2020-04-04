@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 
 $args = array (
     'post_type'      => 'post',
-    'category_name'  => 'activities',	
+    'category_name'  => 'activity',	
     'nopaging'  => false,
     'posts_per_page' => 4,
 );

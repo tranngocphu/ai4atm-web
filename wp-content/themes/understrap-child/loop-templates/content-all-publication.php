@@ -52,7 +52,7 @@ wp_reset_postdata();
 
 			foreach ( $authors as $author ) {			
 			
-				$separator = ( $x < $count -1 ) ? ' &#183; ' : '';
+				$separator = ( $x < $count -1 ) ? ', ' : '';
 				$name = $author->full_name;
 				$link = get_author_posts_url( $author->ID );
 	

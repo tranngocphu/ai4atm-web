@@ -1003,10 +1003,10 @@ class Mixin_NextGen_Admin_Page_Instance_Methods extends Mixin
             // Experiment
             $currentDate = date('Y-m-d');
             $currentDate = date('Y-m-d', strtotime($currentDate));
-            $bf_sale_start = date('Y-m-d', strtotime("11/26/2019"));
-            $bf_sale_end = date('Y-m-d', strtotime("11/30/2019"));
+            $bf_sale_start = date('Y-m-d', strtotime("12/02/2019"));
+            $bf_sale_end = date('Y-m-d', strtotime("12/05/2019"));
             if ($currentDate >= $bf_sale_start && $currentDate <= $bf_sale_end) {
-                $message = '<p class="ngg-header-promo black-friday"><span>' . __('Black Friday Sale!') . '</span><br>' . __('40% Off NextGEN Pro!') . '<a href="https://www.imagely.com/wordpress-gallery-plugin/nextgen-pro/?utm_source=ngg&utm_medium=ngguser&utm_campaign=ngpro" class="button-primary" target="_blank">' . __('Upgrade to NextGEN Pro') . '</a></p>';
+                $message = '<p class="ngg-header-promo black-friday"><span>' . __('Cyber Monday Sale!') . '</span><br>' . __('40% Off NextGEN Pro!') . '<a href="https://www.imagely.com/wordpress-gallery-plugin/nextgen-pro/?utm_source=ngg&utm_medium=ngguser&utm_campaign=ngpro" class="button-primary" target="_blank">' . __('Upgrade to NextGEN Pro') . '</a></p>';
             } else {
                 $message = '<p class="ngg-header-promo">' . __('Tip: Want more beautiful galleries, a stunning lightbox, image social sharing, ecommerce, PRO support, and more?') . '<a href="https://www.imagely.com/wordpress-gallery-plugin/nextgen-pro/?utm_source=ngg&utm_medium=ngguser&utm_campaign=ngpro" class="button-primary" target="_blank">' . __('Upgrade to NextGEN Pro') . '</a></p>';
             }

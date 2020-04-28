@@ -29,7 +29,7 @@ wp_reset_postdata();
         <div class="home-section-title">Publications</div>
         <div class="row">
             <div class="col-12 col-md-4 col-xl-3">
-                <div class="sub-title text-center">Our Recent Publications</div>
+                <div class="sub-title text-center">Recent publications</div>
                 <div class="text-center mt-3 mb-3">
                     <a class="btn btn-lg btn-outline-primary" href="/publications/" role="button">See all publications</a>
                 </div>
@@ -61,7 +61,7 @@ wp_reset_postdata();
 
                             foreach ( $authors as $author ) {			
                             
-                                $separator = ( $x < $count -1 ) ? ' &#183; ' : '';
+                                $separator = ( $x < $count -1 ) ? ', ' : '';
                                 $name = $author->full_name;
                                 $link = get_author_posts_url( $author->ID );
                     

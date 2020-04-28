@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2019 ServMask Inc.
+ * Copyright (C) 2014-2020 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -121,13 +121,23 @@ function ai1wm_multipart_path( $params ) {
 }
 
 /**
- * Get filemap.list absolute path
+ * Get content.list absolute path
  *
  * @param  array  $params Request parameters
  * @return string
  */
-function ai1wm_filemap_path( $params ) {
-	return ai1wm_storage_path( $params ) . DIRECTORY_SEPARATOR . AI1WM_FILEMAP_NAME;
+function ai1wm_content_list_path( $params ) {
+	return ai1wm_storage_path( $params ) . DIRECTORY_SEPARATOR . AI1WM_CONTENT_LIST_NAME;
+}
+
+/**
+ * Get media.list absolute path
+ *
+ * @param  array  $params Request parameters
+ * @return string
+ */
+function ai1wm_media_list_path( $params ) {
+	return ai1wm_storage_path( $params ) . DIRECTORY_SEPARATOR . AI1WM_MEDIA_LIST_NAME;
 }
 
 /**
@@ -190,20 +200,6 @@ function ai1wm_error_path() {
 }
 
 /**
- * Get WordPress content directory
- *
- * @param  string $path Relative path
- * @return string
- */
-function ai1wm_content_path( $path = null ) {
-	if ( empty( $path ) ) {
-		return WP_CONTENT_DIR;
-	}
-
-	return WP_CONTENT_DIR . DIRECTORY_SEPARATOR . $path;
-}
-
-/**
  * Get archive name
  *
  * @param  array  $params Request parameters
@@ -220,7 +216,7 @@ function ai1wm_archive_name( $params ) {
  * @return string
  */
 function ai1wm_backup_url( $params ) {
-	return AI1WM_BACKUPS_URL . '/' . str_replace( DIRECTORY_SEPARATOR, '/', $params['archive'] );
+	return AI1WM_BACKUPS_URL . '/' . ai1wm_replace_directory_separator_with_forward_slash( $params['archive'] );
 }
 
 /**
@@ -371,7 +367,7 @@ function ai1wm_archive_file( $blog_id = null ) {
 	$name[] = date( 'His' );
 
 	// Add unique identifier
-	$name[] = rand( 100, 999 );
+	$name[] = ai1wm_generate_random_string( 6, false );
 
 	return sprintf( '%s.wpress', strtolower( implode( '-', $name ) ) );
 }
@@ -521,6 +517,37 @@ function ai1wm_archive_share( $blog_id = null ) {
 }
 
 /**
+ * Generate random string
+ *
+ * @param  integer $length              String length
+ * @param  boolean $mixed_chars         Whether to include mixed characters
+ * @param  boolean $special_chars       Whether to include special characters
+ * @param  boolean $extra_special_chars Whether to include extra special characters
+ * @return string
+ */
+function ai1wm_generate_random_string( $length = 12, $mixed_chars = true, $special_chars = false, $extra_special_chars = false ) {
+	$chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+	if ( $mixed_chars ) {
+		$chars .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	}
+
+	if ( $special_chars ) {
+		$chars .= '!@#$%^&*()';
+	}
+
+	if ( $extra_special_chars ) {
+		$chars .= '-_ []{}<>~`+=,.;:/?|';
+	}
+
+	$str = '';
+	for ( $i = 0; $i < $length; $i++ ) {
+		$str .= substr( $chars, wp_rand( 0, strlen( $chars ) - 1 ), 1 );
+	}
+
+	return $str;
+}
+
+/**
  * Get storage folder name
  *
  * @return string
@@ -535,22 +562,8 @@ function ai1wm_storage_folder() {
  * @param  integer $blog_id Blog ID
  * @return boolean
  */
-function ai1wm_main_site( $blog_id = null ) {
+function ai1wm_is_mainsite( $blog_id = null ) {
 	return $blog_id === null || $blog_id === 0 || $blog_id === 1;
-}
-
-/**
- * Get sites absolute path by blog ID
- *
- * @param  integer $blog_id Blog ID
- * @return string
- */
-function ai1wm_sites_path( $blog_id = null ) {
-	if ( ai1wm_main_site( $blog_id ) ) {
-		return AI1WM_UPLOADS_PATH;
-	}
-
-	return AI1WM_SITES_PATH . DIRECTORY_SEPARATOR . $blog_id;
 }
 
 /**
@@ -559,12 +572,12 @@ function ai1wm_sites_path( $blog_id = null ) {
  * @param  integer $blog_id Blog ID
  * @return string
  */
-function ai1wm_files_path( $blog_id = null ) {
-	if ( ai1wm_main_site( $blog_id ) ) {
-		return AI1WM_UPLOADS_PATH;
+function ai1wm_blog_files_abspath( $blog_id = null ) {
+	if ( ai1wm_is_mainsite( $blog_id ) ) {
+		return ai1wm_get_uploads_dir();
 	}
 
-	return AI1WM_BLOGSDIR_PATH . DIRECTORY_SEPARATOR . $blog_id . DIRECTORY_SEPARATOR . 'files';
+	return WP_CONTENT_DIR . DIRECTORY_SEPARATOR . 'blogs.dir' . DIRECTORY_SEPARATOR . $blog_id . DIRECTORY_SEPARATOR . 'files';
 }
 
 /**
@@ -573,12 +586,82 @@ function ai1wm_files_path( $blog_id = null ) {
  * @param  integer $blog_id Blog ID
  * @return string
  */
-function ai1wm_blogsdir_path( $blog_id = null ) {
-	if ( ai1wm_main_site( $blog_id ) ) {
+function ai1wm_blog_blogsdir_abspath( $blog_id = null ) {
+	if ( ai1wm_is_mainsite( $blog_id ) ) {
+		return ai1wm_get_uploads_dir();
+	}
+
+	return WP_CONTENT_DIR . DIRECTORY_SEPARATOR . 'blogs.dir' . DIRECTORY_SEPARATOR . $blog_id;
+}
+
+/**
+ * Get sites absolute path by blog ID
+ *
+ * @param  integer $blog_id Blog ID
+ * @return string
+ */
+function ai1wm_blog_sites_abspath( $blog_id = null ) {
+	if ( ai1wm_is_mainsite( $blog_id ) ) {
+		return ai1wm_get_uploads_dir();
+	}
+
+	return ai1wm_get_uploads_dir() . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . $blog_id;
+}
+
+/**
+ * Get files relative path by blog ID
+ *
+ * @param  integer $blog_id Blog ID
+ * @return string
+ */
+function ai1wm_blog_files_relpath( $blog_id = null ) {
+	if ( ai1wm_is_mainsite( $blog_id ) ) {
+		return 'uploads';
+	}
+
+	return 'blogs.dir' . DIRECTORY_SEPARATOR . $blog_id . DIRECTORY_SEPARATOR . 'files';
+}
+
+/**
+ * Get blogs.dir relative path by blog ID
+ *
+ * @param  integer $blog_id Blog ID
+ * @return string
+ */
+function ai1wm_blog_blogsdir_relpath( $blog_id = null ) {
+	if ( ai1wm_is_mainsite( $blog_id ) ) {
+		return 'uploads';
+	}
+
+	return 'blogs.dir' . DIRECTORY_SEPARATOR . $blog_id;
+}
+
+/**
+ * Get sites relative path by blog ID
+ *
+ * @param  integer $blog_id Blog ID
+ * @return string
+ */
+function ai1wm_blog_sites_relpath( $blog_id = null ) {
+	if ( ai1wm_is_mainsite( $blog_id ) ) {
+		return 'uploads';
+	}
+
+	return 'uploads' . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . $blog_id;
+}
+
+/**
+ * Get files URL by blog ID
+ *
+ * @param  integer $blog_id Blog ID
+ * @return string
+ */
+function ai1wm_blog_files_url( $blog_id = null ) {
+	if ( ai1wm_is_mainsite( $blog_id ) ) {
 		return '/wp-content/uploads/';
 	}
 
-	return "/wp-content/blogs.dir/{$blog_id}/files/";
+	return sprintf( '/wp-content/blogs.dir/%d/files/', $blog_id );
 }
 
 /**
@@ -587,26 +670,26 @@ function ai1wm_blogsdir_path( $blog_id = null ) {
  * @param  integer $blog_id Blog ID
  * @return string
  */
-function ai1wm_blogsdir_url( $blog_id = null ) {
-	if ( ai1wm_main_site( $blog_id ) ) {
-		return get_site_url( $blog_id, '/wp-content/uploads/' );
+function ai1wm_blog_blogsdir_url( $blog_id = null ) {
+	if ( ai1wm_is_mainsite( $blog_id ) ) {
+		return '/wp-content/uploads/';
 	}
 
-	return get_site_url( $blog_id, "/wp-content/blogs.dir/{$blog_id}/files/" );
+	return sprintf( '/wp-content/blogs.dir/%d/', $blog_id );
 }
 
 /**
- * Get uploads absolute path by blog ID
+ * Get sites URL by blog ID
  *
  * @param  integer $blog_id Blog ID
  * @return string
  */
-function ai1wm_uploads_path( $blog_id = null ) {
-	if ( ai1wm_main_site( $blog_id ) ) {
+function ai1wm_blog_sites_url( $blog_id = null ) {
+	if ( ai1wm_is_mainsite( $blog_id ) ) {
 		return '/wp-content/uploads/';
 	}
 
-	return "/wp-content/uploads/sites/{$blog_id}/";
+	return sprintf( '/wp-content/uploads/sites/%d/', $blog_id );
 }
 
 /**
@@ -615,12 +698,12 @@ function ai1wm_uploads_path( $blog_id = null ) {
  * @param  integer $blog_id Blog ID
  * @return string
  */
-function ai1wm_uploads_url( $blog_id = null ) {
-	if ( ai1wm_main_site( $blog_id ) ) {
-		return get_site_url( $blog_id, '/wp-content/uploads/' );
+function ai1wm_blog_uploads_url( $blog_id = null ) {
+	if ( ai1wm_is_mainsite( $blog_id ) ) {
+		return sprintf( '/%s/', ai1wm_get_uploads_path() );
 	}
 
-	return get_site_url( $blog_id, "/wp-content/uploads/sites/{$blog_id}/" );
+	return sprintf( '/%s/sites/%d/', ai1wm_get_uploads_path(), $blog_id );
 }
 
 /**
@@ -630,8 +713,7 @@ function ai1wm_uploads_url( $blog_id = null ) {
  * @return string
  */
 function ai1wm_servmask_prefix( $blog_id = null ) {
-	// Set base table prefix
-	if ( ai1wm_main_site( $blog_id ) ) {
+	if ( ai1wm_is_mainsite( $blog_id ) ) {
 		return AI1WM_TABLE_PREFIX;
 	}
 
@@ -648,7 +730,7 @@ function ai1wm_table_prefix( $blog_id = null ) {
 	global $wpdb;
 
 	// Set base table prefix
-	if ( ai1wm_main_site( $blog_id ) ) {
+	if ( ai1wm_is_mainsite( $blog_id ) ) {
 		return $wpdb->base_prefix;
 	}
 
@@ -1173,6 +1255,19 @@ function ai1wm_deactivate_revolution_slider( $basename ) {
 }
 
 /**
+ * Initial DB version
+ *
+ * @return boolean
+ */
+function ai1wm_initial_db_version() {
+	if ( ! get_option( AI1WM_DB_VERSION ) ) {
+		return update_option( AI1WM_DB_VERSION, get_option( AI1WM_INITIAL_DB_VERSION ) );
+	}
+
+	return false;
+}
+
+/**
  * Discover plugin basename
  *
  * @param  string $basename Plugin basename
@@ -1234,23 +1329,31 @@ function ai1wm_validate_theme_basename( $basename ) {
  * @return void
  */
 function ai1wm_cache_flush() {
-	// Initialize WP cache
 	wp_cache_init();
-
-	// Flush WP cache
 	wp_cache_flush();
 
-	// Set WP cache
+	// Reset WP options cache
 	wp_cache_set( 'alloptions', array(), 'options' );
 	wp_cache_set( 'notoptions', array(), 'options' );
 
-	// Delete WP cache
+	// Reset WP sitemeta cache
+	wp_cache_set( '1:notoptions', array(), 'site-options' );
+	wp_cache_set( '1:ms_files_rewriting', false, 'site-options' );
+	wp_cache_set( '1:active_sitewide_plugins', false, 'site-options' );
+
+	// Delete WP options cache
 	wp_cache_delete( 'alloptions', 'options' );
 	wp_cache_delete( 'notoptions', 'options' );
 
-	// Remove WP filters
-	remove_all_filters( 'sanitize_option_siteurl' );
+	// Delete WP sitemeta cache
+	wp_cache_delete( '1:notoptions', 'site-options' );
+	wp_cache_delete( '1:ms_files_rewriting', 'site-options' );
+	wp_cache_delete( '1:active_sitewide_plugins', 'site-options' );
+
+	// Remove WP options filter
 	remove_all_filters( 'sanitize_option_home' );
+	remove_all_filters( 'sanitize_option_siteurl' );
+	remove_all_filters( 'default_site_option_ms_files_rewriting' );
 }
 
 /**
@@ -1583,7 +1686,33 @@ function ai1wm_get_filters( $tag ) {
 function ai1wm_get_uploads_dir() {
 	if ( ( $upload_dir = wp_upload_dir() ) ) {
 		if ( isset( $upload_dir['basedir'] ) ) {
-			return $upload_dir['basedir'];
+			return untrailingslashit( $upload_dir['basedir'] );
+		}
+	}
+}
+
+/**
+ * Get WordPress uploads URL
+ *
+ * @return string
+ */
+function ai1wm_get_uploads_url() {
+	if ( ( $upload_dir = wp_upload_dir() ) ) {
+		if ( isset( $upload_dir['baseurl'] ) ) {
+			return trailingslashit( $upload_dir['baseurl'] );
+		}
+	}
+}
+
+/**
+ * Get WordPress uploads path
+ *
+ * @return string
+ */
+function ai1wm_get_uploads_path() {
+	if ( ( $upload_dir = wp_upload_dir() ) ) {
+		if ( isset( $upload_dir['basedir'] ) ) {
+			return str_replace( ABSPATH, '', $upload_dir['basedir'] );
 		}
 	}
 }
@@ -1607,4 +1736,34 @@ function ai1wm_basename( $path, $suffix = '' ) {
  */
 function ai1wm_dirname( $path ) {
 	return urldecode( dirname( str_replace( array( '%2F', '%5C' ), '/', urlencode( $path ) ) ) );
+}
+
+/**
+ * Replace forward slash with current directory separator
+ *
+ * @param  string $path Path
+ * @return string
+ */
+function ai1wm_replace_forward_slash_with_directory_separator( $path ) {
+	return str_replace( '/', DIRECTORY_SEPARATOR, $path );
+}
+
+/**
+ * Replace current directory separator with forward slash
+ *
+ * @param  string $path Path
+ * @return string
+ */
+function ai1wm_replace_directory_separator_with_forward_slash( $path ) {
+	return str_replace( DIRECTORY_SEPARATOR, '/', $path );
+}
+
+/**
+ * Escape Windows directory separator
+ *
+ * @param  string $path Path
+ * @return string
+ */
+function ai1wm_escape_windows_directory_separator( $path ) {
+	return preg_replace( '/[\\\\]+/', '\\\\\\\\', $path );
 }

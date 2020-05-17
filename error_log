@@ -100,3 +100,4 @@
 [15-May-2020 17:36:24 UTC] PHP Fatal error:  Class 'W3TC\Config' not found in /home3/ai4atm/ai4atm-main/wp-content/plugins/w3-total-cache___/w3-total-cache-api.php on line 547
 [15-May-2020 17:36:25 UTC] PHP Fatal error:  Class 'W3TC\Config' not found in /home3/ai4atm/ai4atm-main/wp-content/plugins/w3-total-cache___/w3-total-cache-api.php on line 547
 [15-May-2020 17:37:08 UTC] PHP Fatal error:  Class 'W3TC\Config' not found in /home3/ai4atm/ai4atm-main/wp-content/plugins/w3-total-cache___/w3-total-cache-api.php on line 547
+[15-May-2020 13:28:09 America/Chicago] PHP Fatal error:  Call to undefined function apache_get_modules() in Command line code on line 1
